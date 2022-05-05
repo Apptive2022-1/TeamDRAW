@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="저희가 당신을 어떻게 불러드리면 좋을까요?"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="성별"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/btn_man"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_man"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:text="남"
+        app:layout_constraintEnd_toStartOf="@+id/btn_woman"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_woman"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:text="여"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_man"
+        app:layout_constraintTop_toBottomOf="@id/textView1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="거주지"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/btn_man"
+        app:layout_constraintTop_toBottomOf="@id/btn_man" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_select_city"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:text="시/도"
+        app:layout_constraintEnd_toStartOf="@+id/btn_woman"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_select_region"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:text="구"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_man"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="시/도 구 api 사용해야 할 거 같음"
+        app:layout_constraintStart_toStartOf="@id/btn_select_city"
+        app:layout_constraintTop_toBottomOf="@id/btn_select_city" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
