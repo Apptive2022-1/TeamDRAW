@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/drawable/frame_layout_btn_gradient.xml" value="0.1855" />
+        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/drawable/frame_layout_rounded_corner.xml" value="0.1855" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1855" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/drawable/ic_nav_contest.xml" value="0.1855" />
+        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/drawable/rounded_corner_bg.xml" value="0.1" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/drawable/zzz.xml" value="0.1555" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/fragment_contest.xml" value="0.536" />
-        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/fragment_contest_detail.xml" value="0.2" />
+        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/fragment_contest.xml" value="0.2196307094266278" />
+        <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/fragment_contest_detail.xml" value="0.264" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/fragment_finding_team_members.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/fragment_small_group_room.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/rlawj/AndroidStudioProjects/TeamDRAW/TeamDRAW/app/src/main/res/layout/item_contest_rv.xml" value="0.22826086956521738" />
