@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.teamdraw.R
 import com.example.teamdraw.databinding.FragmentContestBinding
+import com.google.android.material.tabs.TabLayout
 import java.nio.file.DirectoryIteratorException
 
 
@@ -52,6 +53,21 @@ class ContestFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sortSpinner.adapter = adapter
         }
+
+//        binding.tabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//                TODO("Not yet implemented")
+//            }
+//        })
+
 
         return binding.root
     }
