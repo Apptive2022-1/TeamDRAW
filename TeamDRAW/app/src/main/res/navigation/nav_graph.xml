@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/contestFragment"
-        android:name="com.example.teamdraw.ContestFragment"
+        android:name="com.example.teamdraw.contest.ContestFragment"
         android:label="fragment_contest"
         tools:layout="@layout/fragment_contest" />
     <fragment
@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_small_group_room" />
     <fragment
         android:id="@+id/findingTeamMembersFragment"
-        android:name="com.example.teamdraw.FindingTeamMembersFragment"
+        android:name="com.example.teamdraw.findingteammember.FindingTeamMembersFragment"
         android:label="fragment_finding_team_members"
         tools:layout="@layout/fragment_finding_team_members" />
 </navigation>

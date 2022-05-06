@@ -5,4 +5,14 @@
     <string name="bottom_menu_contest">공모전</string>
     <string name="bottom_menu_member">팀원찾기</string>
     <string name="bottom_menu_group">소그룹실</string>
+    
+    <string-array name="spinner_view_array">
+        <item>전체보기</item>
+    </string-array>
+
+    <string-array name="spinner_sort_array">
+        <item>최신순</item>
+        <item>과거순</item>
+    </string-array>
+
 </resources>

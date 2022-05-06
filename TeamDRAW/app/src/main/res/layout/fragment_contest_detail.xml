@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/purple_200"
-            android:src="@drawable/place_holder_contest_detail"
+            android:src="@drawable/placeholder_contest_detail"
             app:layout_constraintTop_toBottomOf="@id/contest_title_tv" />
 
         <TextView
