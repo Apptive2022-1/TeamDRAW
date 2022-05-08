@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/contestFragment">
+
+    <fragment
+        android:id="@+id/contestFragment"
+        android:name="com.example.teamdraw.contest.ContestFragment"
+        android:label="fragment_contest"
+        tools:layout="@layout/fragment_contest">
+        <action
+            android:id="@+id/action_contestFragment_to_contestDetailFragment"
+            app:destination="@id/contestDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/smallGroupRoomFragment"
+        android:name="com.example.teamdraw.SmallGroupRoomFragment"
+        android:label="fragment_small_group_room"
+        tools:layout="@layout/fragment_small_group_room" />
+    <fragment
+        android:id="@+id/findingTeamMembersFragment"
+        android:name="com.example.teamdraw.findingteammember.FindingTeamMembersFragment"
+        android:label="fragment_finding_team_members"
+        tools:layout="@layout/fragment_finding_team_members" />
+    <fragment
+        android:id="@+id/contestDetailFragment"
+        android:name="com.example.teamdraw.ContestDetailFragment"
+        android:label="fragment_contest_detail"
+        tools:layout="@layout/fragment_contest_detail" />
+</navigation>
