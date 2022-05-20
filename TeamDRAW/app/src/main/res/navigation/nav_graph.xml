@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_contestFragment_to_contestDetailFragment"
             app:destination="@id/contestDetailFragment" />
+        <action
+            android:id="@+id/action_contestFragment_to_inputInformationFragment"
+            app:destination="@id/inputInformationFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/smallGroupRoomFragment"
@@ -29,4 +33,11 @@
         android:name="com.example.teamdraw.ContestDetailFragment"
         android:label="fragment_contest_detail"
         tools:layout="@layout/fragment_contest_detail" />
+
+    <fragment
+        android:id="@+id/inputInformationFragment"
+        android:name="com.example.teamdraw.inputinformation.InputInformationFragment"
+        android:label="fragment_input_information"
+        tools:layout="@layout/fragment_input_information">
+    </fragment>
 </navigation>

@@ -2,9 +2,13 @@ package com.example.teamdraw.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teamdraw.R
+import com.example.teamdraw.data.UserData
+import com.example.teamdraw.inputinformation.UserInfoViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -13,11 +17,14 @@ import com.facebook.login.widget.LoginButton
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity : AppCompatActivity() {
-
+    val userInfoViewModel: UserInfoViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private lateinit var callbackManager: CallbackManager
 
@@ -28,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
         callbackManager = CallbackManager.Factory.create()
 
-        initButton()
+        initFacebookLoginButton()
 
     }
 
@@ -37,7 +44,47 @@ class LoginActivity : AppCompatActivity() {
         callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun initButton() {
+    private fun handleSuccessLogin() {
+        if (auth.currentUser == null) {
+            Toast.makeText(this@LoginActivity, "로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
+            return@handleSuccessLogin
+        }
+
+        val userId = auth.currentUser?.uid // userId 가져오기
+        val db = Firebase.firestore
+
+        val dbRef = db.collection("Users").document(userId.toString())
+        dbRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) { // document가 존재하는 경우
+                    Log.d("handleSuccessLogin : ", document.data.toString())
+                    Log.d("Login Activity  ", "이미 가입된 사용자")
+                    setDataIntoViewModel() // 이미 가입된 사용자는 데이터를 불러와서 viewModel에 저장
+                    setResult(RESULT_OK)
+                    finish()
+                }
+                else { // document == null 인 경우는, 처음 가입하는 사용자
+                    val user = UserData(userId.toString(),)
+                    db.collection("Users").document(userId.toString())
+                        .set(user)
+                        .addOnSuccessListener {
+                            Log.d("첫번째 가입 ", "success")
+                            setResult(RESULT_FIRST_USER)
+                            finish() // db 업데이트되면 정상종료
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this@LoginActivity, "인터넷 연결을 확인해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this@LoginActivity, "인터넷 연결을 확인해주세요.", Toast.LENGTH_SHORT).show()
+            }
+
+
+    }
+
+    private fun initFacebookLoginButton() {
         val btn_facebookLogin = findViewById<LoginButton>(R.id.btn_facebookLogin)
         btn_facebookLogin.setPermissions("email", "public_profile")
 
@@ -51,10 +98,14 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithCredential(credential) // 파이어베이스에 토큰을 넘겨줌
                     .addOnCompleteListener(this@LoginActivity) { task ->
                         if (task.isSuccessful) {
-                            finish()
+                            handleSuccessLogin()
                             // 페이스북 계정이 등록되어있지 않으면 자동으로 회원가입시키고 success를 리턴
                         } else { // 로그인 실패한 경우
-                            Toast.makeText(this@LoginActivity, "페이스북 로그인이 실패했습니다", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "페이스북 로그인이 실패했습니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
@@ -69,8 +120,49 @@ class LoginActivity : AppCompatActivity() {
                 // 로그인 실패
                 Toast.makeText(this@LoginActivity, "페이스북 로그인이 실패했습니다", Toast.LENGTH_SHORT).show()
             }
-
-
         })
+    }
+    private fun setDataIntoViewModel() {
+        val userId = auth.currentUser?.uid // userId 가져오기
+        val db = Firebase.firestore
+
+        val dbRef = db.collection("Users").document(userId.toString())
+        dbRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val userData = document.toObject<UserData>()
+                    updateViewModel(userData)
+                    Log.d("setDataIntoViewModel ", "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d("setDataIntoViewModel ", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("setDataIntoViewModel ", "get failed with ", exception)
+            }
+    }
+
+    fun updateViewModel(userData : UserData?){
+        if(userData?.name != null){
+            userInfoViewModel.updateValue(userData?.name.toString(), "NAME")
+        }
+        if(userData?.nickname != null){
+            userInfoViewModel.updateValue(userData?.nickname.toString(), "NICKNAME")
+        }
+        if(userData?.sex != null){
+            userInfoViewModel.updateValue(userData?.sex.toString(), "SEX")
+        }
+        if(userData?.univ != null){
+            userInfoViewModel.updateValue(userData?.univ.toString(), "UNIV")
+        }
+        if(userData?.univ_email != null){
+            userInfoViewModel.updateValue(userData?.univ_email.toString(), "UNIV_EMAIL")
+        }
+        if(userData?.major != null){
+            userInfoViewModel.updateValue(userData?.grade.toString(), "GRADE")
+        }
+        if(userData?.grade != null){
+            userInfoViewModel.updateValue(userData?.major.toString(), "MAJOR")
+        }
     }
 }
