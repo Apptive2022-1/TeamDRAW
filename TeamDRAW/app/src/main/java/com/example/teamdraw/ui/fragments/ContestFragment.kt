@@ -1,37 +1,40 @@
 package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.teamdraw.R
 import com.example.teamdraw.contest.ContestRVAdapter
-import com.example.teamdraw.contest.MyClickListener
 import com.example.teamdraw.databinding.FragmentContestBinding
+import com.example.teamdraw.viewmodels.ContestsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class ContestFragment : Fragment() {
 
     lateinit var binding: FragmentContestBinding
+    private val viewModel: ContestsViewModel by viewModels()
+
+    private val mAdapter by lazy {
+        ContestRVAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentContestBinding.inflate(inflater,container,false)
+        binding = FragmentContestBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
 
-        val adapter = ContestRVAdapter(MyClickListener {
-            findNavController().navigate(ContestFragmentDirections.actionContestFragmentToContestDetailFragment())
-            Log.d("##12", "ContestFragment - onCreateView() called")
-        })
-        adapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-        binding.contestRv.adapter = adapter
-        binding.contestRv.layoutManager = GridLayoutManager(context, 2)
+        setRecyclerView()
+        readDatabase()
 
         val viewSpinner = binding.viewSpinner
         ArrayAdapter.createFromResource(
@@ -67,7 +70,21 @@ class ContestFragment : Fragment() {
 //            }
 //        })
 
-
         return binding.root
+    }
+
+    private fun setRecyclerView() {
+        binding.contestRv.adapter = mAdapter
+        binding.contestRv.layoutManager = GridLayoutManager(context, 2)
+    }
+
+    private fun readDatabase() {
+        lifecycleScope.launch {
+            viewModel.readRecipes.observe(viewLifecycleOwner) { database ->
+                if (database.isNotEmpty()) {
+                    mAdapter.setList(database)
+                }
+            }
+        }
     }
 }

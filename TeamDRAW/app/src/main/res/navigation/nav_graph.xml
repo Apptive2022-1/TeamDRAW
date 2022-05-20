@@ -32,12 +32,15 @@
         android:id="@+id/contestDetailFragment"
         android:name="com.example.teamdraw.ui.fragments.ContestDetailFragment"
         android:label="fragment_contest_detail"
-        tools:layout="@layout/fragment_contest_detail" />
-
-    <fragment
-        android:id="@+id/inputInformationFragment"
-        android:name="com.example.teamdraw.ui.fragments.InputInformationFragment"
-        android:label="fragment_input_information"
-        tools:layout="@layout/fragment_input_information">
+        tools:layout="@layout/fragment_contest_detail" >
+        <argument
+            android:name="contest"
+            app:argType="com.example.teamdraw.models.Contest"/>
     </fragment>
+            
+    <fragment
+        android:id="@id+inputInformationFragment"
+        android:name="com.example.teamdraw.ui.fragment.InputInformationFragment"
+        android:label="fragment_input_information"
+        tools:layout="@layout/fragment_input_information"/>
 </navigation>

@@ -14,9 +14,16 @@ class FindingTeamMembersFragment : Fragment() {
 
     private lateinit var binding: FragmentFindingTeamMembersBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        binding = FragmentFindingTeamMembersBinding.inflate(inflater, container, false)
+        binding = FragmentFindingTeamMembersBinding.inflate(
+            inflater,
+            container,
+            false
+        )
 
         val recruitAdapter = RecruitRVAdapter()
         val wantingAdapter = WantingRVAdapter()

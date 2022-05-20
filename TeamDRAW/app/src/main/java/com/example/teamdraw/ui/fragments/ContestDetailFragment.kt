@@ -5,15 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.teamdraw.R
+import com.example.teamdraw.databinding.FragmentContestDetailBinding
 
 
 class ContestDetailFragment : Fragment() {
+
+    private val args by navArgs<ContestDetailFragmentArgs>()
+    lateinit var binding : FragmentContestDetailBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contest_detail, container, false)
+
+        binding = FragmentContestDetailBinding.inflate(inflater, container, false)
+        binding.contest = args.contest
+        return binding.root
     }
 }
