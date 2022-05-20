@@ -11,7 +11,7 @@
         android:id="@+id/findingTeamMembersFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".findingteammember.FindingTeamMembersFragment">
+        tools:context=".ui.fragments.FindingTeamMembersFragment">
 
         <TextView
             android:id="@+id/tv1"
