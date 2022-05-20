@@ -1,10 +1,11 @@
-package com.example.teamdraw
+package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.teamdraw.R
 
 
 class SmallGroupRoomFragment : Fragment() {

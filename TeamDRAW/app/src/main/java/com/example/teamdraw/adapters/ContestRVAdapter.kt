@@ -3,17 +3,21 @@ package com.example.teamdraw.contest
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teamdraw.data.database.ContestsEntity
 import com.example.teamdraw.databinding.ItemContestRvBinding
+import com.example.teamdraw.models.Contest
 
 
 // 리사이클러뷰 어댑터
-class ContestRVAdapter(private val clickListener: MyClickListener) :
+class ContestRVAdapter() :
     RecyclerView.Adapter<ContestRVAdapter.ContestRVViewHolder>() {
 
-    private var list = listOf<Int>()
+    private var list = listOf<ContestsEntity>()
 
-    fun setList(nlist: List<Int>) {
+    fun setList(nlist: List<ContestsEntity>) {
         list = nlist
         notifyDataSetChanged()
     }
@@ -21,38 +25,34 @@ class ContestRVAdapter(private val clickListener: MyClickListener) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ContestRVViewHolder = ContestRVViewHolder.from(parent, clickListener)
+    ): ContestRVViewHolder = ContestRVViewHolder.from(parent)
 
     override fun onBindViewHolder(
         holder: ContestRVViewHolder,
         position: Int
     ) {
-        holder.bind()
+        val contest = list[position].contest
+        holder.bind(contest)
     }
 
     override fun getItemCount(): Int = list.size
 
     class ContestRVViewHolder(
-        private val binding: ItemContestRvBinding,
-        private val clickListener: MyClickListener
+        private val binding: ItemContestRvBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
-            fun from(parent: ViewGroup, clickListener: MyClickListener): ContestRVViewHolder {
+            fun from(parent: ViewGroup): ContestRVViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemContestRvBinding.inflate(layoutInflater, parent, false)
-                return ContestRVViewHolder(binding, clickListener)
+                return ContestRVViewHolder(binding)
             }
         }
 
-        fun bind() {
+        fun bind(item: Contest) {
             Log.d("##12", "ContestRVViewHolder - bind() called")
-            binding.listener = clickListener
+            binding.contest = item
             binding.executePendingBindings()
         }
     }
-}
-
-class MyClickListener(private val clickListener: () -> Unit) {
-    fun onClick() = clickListener()
 }

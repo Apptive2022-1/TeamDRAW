@@ -1,4 +1,4 @@
-package com.example.teamdraw.findingteammember
+package com.example.teamdraw.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

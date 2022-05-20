@@ -1,4 +1,4 @@
-package com.example.teamdraw.Login
+package com.example.teamdraw.ui
 
 import android.content.Intent
 import android.os.Bundle
