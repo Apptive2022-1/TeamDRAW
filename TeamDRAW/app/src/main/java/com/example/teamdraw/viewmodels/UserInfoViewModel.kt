@@ -1,4 +1,4 @@
-package com.example.teamdraw.inputinformation
+package com.example.teamdraw.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

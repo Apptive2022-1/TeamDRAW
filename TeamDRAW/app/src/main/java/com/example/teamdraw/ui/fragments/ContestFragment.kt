@@ -1,4 +1,4 @@
-package com.example.teamdraw.contest
+package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.teamdraw.R
+import com.example.teamdraw.contest.ContestRVAdapter
+import com.example.teamdraw.contest.MyClickListener
 import com.example.teamdraw.databinding.FragmentContestBinding
-import com.google.android.material.tabs.TabLayout
-import java.nio.file.DirectoryIteratorException
 
 
 class ContestFragment : Fragment() {

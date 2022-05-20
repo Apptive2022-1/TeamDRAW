@@ -1,4 +1,4 @@
-package com.example.teamdraw.inputinformation
+package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.teamdraw.data.UserData
+import com.example.teamdraw.models.UserData
 import com.example.teamdraw.databinding.FragmentInputInformationBinding
+import com.example.teamdraw.adapters.InputInformationViewPagerAdapter
+import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

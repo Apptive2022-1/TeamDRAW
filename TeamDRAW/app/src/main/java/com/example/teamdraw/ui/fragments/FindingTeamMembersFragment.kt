@@ -1,4 +1,4 @@
-package com.example.teamdraw.findingteammember
+package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.databinding.FragmentFindingTeamMembersBinding
+import com.example.teamdraw.adapters.RecruitRVAdapter
+import com.example.teamdraw.adapters.WantingRVAdapter
 
 class FindingTeamMembersFragment : Fragment() {
 

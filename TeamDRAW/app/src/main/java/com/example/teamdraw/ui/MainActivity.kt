@@ -1,4 +1,4 @@
-package com.example.teamdraw
+package com.example.teamdraw.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.teamdraw.Login.LoginActivity
-import com.example.teamdraw.data.UserData
+import com.example.teamdraw.R
+import com.example.teamdraw.models.UserData
 import com.example.teamdraw.databinding.ActivityMainBinding
-import com.example.teamdraw.inputinformation.UserInfoViewModel
+import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject

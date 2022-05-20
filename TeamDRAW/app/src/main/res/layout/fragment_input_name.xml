@@ -4,7 +4,7 @@
     <data>
         <variable
             name="user"
-            type="com.example.teamdraw.inputinformation.UserInfoViewModel" />
+            type="com.example.teamdraw.viewmodels.UserInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

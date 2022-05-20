@@ -1,4 +1,4 @@
-package com.example.teamdraw.data
+package com.example.teamdraw.models
 
 data class UserData(
     val userId: String = "",

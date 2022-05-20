@@ -1,4 +1,4 @@
-package com.example.teamdraw.Login
+package com.example.teamdraw.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teamdraw.R
-import com.example.teamdraw.data.UserData
-import com.example.teamdraw.inputinformation.UserInfoViewModel
+import com.example.teamdraw.models.UserData
+import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -18,7 +18,6 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 

@@ -1,4 +1,4 @@
-package com.example.teamdraw.inputinformation
+package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.teamdraw.R
 import com.example.teamdraw.databinding.FragmentInputLocalBinding
+import com.example.teamdraw.viewmodels.UserInfoViewModel
 
 class InputLocalFragment : Fragment() {
 
