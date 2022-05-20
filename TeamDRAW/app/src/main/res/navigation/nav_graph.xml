@@ -39,8 +39,8 @@
     </fragment>
             
     <fragment
-        android:id="@id+inputInformationFragment"
-        android:name="com.example.teamdraw.ui.fragment.InputInformationFragment"
+        android:id="@+id/inputInformationFragment"
+        android:name="com.example.teamdraw.ui.fragments.InputInformationFragment"
         android:label="fragment_input_information"
         tools:layout="@layout/fragment_input_information"/>
 </navigation>

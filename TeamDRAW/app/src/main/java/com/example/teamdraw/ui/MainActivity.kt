@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.teamdraw.R
-import com.example.teamdraw.models.UserData
+import com.example.teamdraw.models.User
 import com.example.teamdraw.databinding.ActivityMainBinding
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         dbRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    val userData = document.toObject<UserData>()
+                    val userData = document.toObject<User>()
                     updateViewModel(userData)
 
                     Log.d("setDataIntoViewModel ", "DocumentSnapshot data: ${document.data}")
@@ -112,27 +112,27 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun updateViewModel(userData: UserData?) {
-        if (userData?.name != null) {
-            userInfoViewModel.updateValue(userData?.name.toString(), "NAME")
+    private fun updateViewModel(user: User?) {
+        if (user?.name != null) {
+            userInfoViewModel.updateValue(user?.name.toString(), "NAME")
         }
-        if (userData?.nickname != null) {
-            userInfoViewModel.updateValue(userData?.nickname.toString(), "NICKNAME")
+        if (user?.nickname != null) {
+            userInfoViewModel.updateValue(user?.nickname.toString(), "NICKNAME")
         }
-        if (userData?.sex != null) {
-            userInfoViewModel.updateValue(userData?.sex.toString(), "SEX")
+        if (user?.sex != null) {
+            userInfoViewModel.updateValue(user?.sex.toString(), "SEX")
         }
-        if (userData?.univ != null) {
-            userInfoViewModel.updateValue(userData?.univ.toString(), "UNIV")
+        if (user?.univ != null) {
+            userInfoViewModel.updateValue(user?.univ.toString(), "UNIV")
         }
-        if (userData?.univ_email != null) {
-            userInfoViewModel.updateValue(userData?.univ_email.toString(), "UNIV_EMAIL")
+        if (user?.univ_email != null) {
+            userInfoViewModel.updateValue(user?.univ_email.toString(), "UNIV_EMAIL")
         }
-        if (userData?.major != null) {
-            userInfoViewModel.updateValue(userData?.grade.toString(), "GRADE")
+        if (user?.major != null) {
+            userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
         }
-        if (userData?.grade != null) {
-            userInfoViewModel.updateValue(userData?.major.toString(), "MAJOR")
+        if (user?.grade != null) {
+            userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
         }
     }
 }

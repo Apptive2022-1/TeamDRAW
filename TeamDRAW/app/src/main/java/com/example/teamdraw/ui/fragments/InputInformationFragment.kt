@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.teamdraw.models.UserData
+import com.example.teamdraw.models.User
 import com.example.teamdraw.databinding.FragmentInputInformationBinding
 import com.example.teamdraw.adapters.InputInformationViewPagerAdapter
 import com.example.teamdraw.viewmodels.UserInfoViewModel
@@ -51,7 +51,7 @@ class InputInformationFragment : Fragment() {
             dbRef.get()
                 .addOnSuccessListener { document ->
                     // document == null 인 경우는, 처음 가입하는 사용자
-                    val user = UserData(
+                    val user = User(
                         userId.toString(), userInfoViewModel.name.value,
                         userInfoViewModel.nickname.value, userInfoViewModel.sex.value,
                         userInfoViewModel.city.value, userInfoViewModel.region.value,

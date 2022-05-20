@@ -1,6 +1,6 @@
 package com.example.teamdraw.models
 
-data class UserData(
+data class User(
     val userId: String = "",
     val name: String? = null,
     val nickname: String? = null,

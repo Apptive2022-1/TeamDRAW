@@ -6,8 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.teamdraw.Login.LoginActivity
 import com.example.teamdraw.databinding.ActivityMainBinding
+import com.example.teamdraw.ui.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun login(){
         if (auth.currentUser == null){
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
         // 로그인이 되어있지 않으면 loginActivity 호출
     }
