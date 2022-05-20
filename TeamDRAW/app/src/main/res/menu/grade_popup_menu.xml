@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/freshmen"
+        android:title="1학년" />
+    <item
+        android:id="@+id/sophomore"
+        android:title="2학년" />
+    <item
+        android:id="@+id/junior"
+        android:title="3학년" />
+    <item
+        android:id="@+id/senior"
+        android:title="4학년" />
+    <item
+        android:id="@+id/graduate"
+        android:title="대학원" />
+</menu>
