@@ -1,4 +1,4 @@
-package com.example.teamdraw.ui
+package com.example.teamdraw.Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -55,19 +55,18 @@ class LoginActivity : AppCompatActivity() {
         val dbRef = db.collection("Users").document(userId.toString())
         dbRef.get()
             .addOnSuccessListener { document ->
-                if (document.exists()) { // document가 존재하는 경우
-                    Log.d("handleSuccessLogin : ", document.data.toString())
-                    Log.d("Login Activity  ", "이미 가입된 사용자")
+                if (document.exists()) { // document 가 존재하는 경우
+                    Log.d("Login Activity  ", "이미 가입된 사용자" + document.data.toString())
                     setDataIntoViewModel() // 이미 가입된 사용자는 데이터를 불러와서 viewModel에 저장
                     setResult(RESULT_OK)
                     finish()
                 }
-                else { // document == null 인 경우는, 처음 가입하는 사용자
+                else { // document.exists() = false 인 경우는, 처음 가입하는 사용자
                     val user = User(userId.toString(),)
                     db.collection("Users").document(userId.toString())
                         .set(user)
                         .addOnSuccessListener {
-                            Log.d("첫번째 가입 ", "success")
+                            Log.d("첫번째 가입 & 로그인 ", "DB에 신규유저 등록 success")
                             setResult(RESULT_FIRST_USER)
                             finish() // db 업데이트되면 정상종료
                         }
@@ -107,8 +106,6 @@ class LoginActivity : AppCompatActivity() {
                             ).show()
                         }
                     }
-
-
             }
 
             override fun onCancel() {
@@ -129,8 +126,8 @@ class LoginActivity : AppCompatActivity() {
         dbRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    val userData = document.toObject<User>()
-                    updateViewModel(userData)
+                    val User = document.toObject<User>()
+                    updateViewModel(User)
                     Log.d("setDataIntoViewModel ", "DocumentSnapshot data: ${document.data}")
                 } else {
                     Log.d("setDataIntoViewModel ", "No such document")
@@ -141,27 +138,27 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    fun updateViewModel(user : User?){
-        if(user?.name != null){
-            userInfoViewModel.updateValue(user?.name.toString(), "NAME")
+    fun updateViewModel(User : User?){
+        if(User?.name != null){
+            userInfoViewModel.updateValue(User?.name.toString(), "NAME")
         }
-        if(user?.nickname != null){
-            userInfoViewModel.updateValue(user?.nickname.toString(), "NICKNAME")
+        if(User?.nickname != null){
+            userInfoViewModel.updateValue(User?.nickname.toString(), "NICKNAME")
         }
-        if(user?.sex != null){
-            userInfoViewModel.updateValue(user?.sex.toString(), "SEX")
+        if(User?.sex != null){
+            userInfoViewModel.updateValue(User?.sex.toString(), "SEX")
         }
-        if(user?.univ != null){
-            userInfoViewModel.updateValue(user?.univ.toString(), "UNIV")
+        if(User?.univ != null){
+            userInfoViewModel.updateValue(User?.univ.toString(), "UNIV")
         }
-        if(user?.univ_email != null){
-            userInfoViewModel.updateValue(user?.univ_email.toString(), "UNIV_EMAIL")
+        if(User?.univ_email != null){
+            userInfoViewModel.updateValue(User?.univ_email.toString(), "UNIV_EMAIL")
         }
-        if(user?.major != null){
-            userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
+        if(User?.major != null){
+            userInfoViewModel.updateValue(User?.grade.toString(), "GRADE")
         }
-        if(user?.grade != null){
-            userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
+        if(User?.grade != null){
+            userInfoViewModel.updateValue(User?.major.toString(), "MAJOR")
         }
     }
 }
