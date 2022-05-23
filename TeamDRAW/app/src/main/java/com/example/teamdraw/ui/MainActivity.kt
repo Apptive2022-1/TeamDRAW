@@ -12,14 +12,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.teamdraw.R
-import com.example.teamdraw.models.User
 import com.example.teamdraw.databinding.ActivityMainBinding
+import com.example.teamdraw.models.User
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,8 +43,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.my_nav_host) as NavHostFragment
 
         navHostController = navHostFragment.navController
-
-
 
         //handleInitLogin() // 첫 가입 & 로그인인 경우 정보입력창으로 navigate
         getResultCode = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -113,26 +112,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateViewModel(user: User?) {
-        if (user?.name != null) {
+        if(user?.name != null){
             userInfoViewModel.updateValue(user?.name.toString(), "NAME")
         }
-        if (user?.nickname != null) {
+        if(user?.nickname != null){
             userInfoViewModel.updateValue(user?.nickname.toString(), "NICKNAME")
         }
-        if (user?.sex != null) {
+        if(user?.sex != null){
             userInfoViewModel.updateValue(user?.sex.toString(), "SEX")
         }
-        if (user?.univ != null) {
+        if(user?.univ != null){
             userInfoViewModel.updateValue(user?.univ.toString(), "UNIV")
         }
-        if (user?.univ_email != null) {
+        if(user?.univ_email != null){
             userInfoViewModel.updateValue(user?.univ_email.toString(), "UNIV_EMAIL")
         }
-        if (user?.major != null) {
+        if(user?.major != null){
             userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
         }
-        if (user?.grade != null) {
+        if(user?.grade != null){
             userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
+        }
+        if(user?.isEmailAuthenticated != null){
+            userInfoViewModel.updateValue(user?.isEmailAuthenticated.toString(), "AUTHENTICATE")
         }
     }
 }

@@ -14,6 +14,7 @@ class UserInfoViewModel : ViewModel() {
     private val _major = MutableLiveData<String>()
     private val _city = MutableLiveData<String>()
     private val _region = MutableLiveData<String>()
+    private val _isEmailAuthenticated = MutableLiveData<String>()
 
     val name: MutableLiveData<String>
         get() = _name
@@ -38,8 +39,16 @@ class UserInfoViewModel : ViewModel() {
 
     val city: MutableLiveData<String>
         get() = _city
+
     val region: MutableLiveData<String>
         get() = _region
+
+    val isEmailAuthenticated: MutableLiveData<String>
+        get() = _isEmailAuthenticated
+
+    init{
+        _isEmailAuthenticated.value = "false"
+    }
 
     fun updateValue(value: String, member: String) {
         when (member) {
@@ -68,6 +77,9 @@ class UserInfoViewModel : ViewModel() {
                 _city.value = value
             }
             "REGION" -> {
+                _region.value = value
+            }
+            "AUTHENTICATE" -> {
                 _region.value = value
             }
         }

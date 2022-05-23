@@ -1,4 +1,4 @@
-package com.example.teamdraw.Login
+package com.example.teamdraw.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -138,27 +138,30 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    fun updateViewModel(User : User?){
-        if(User?.name != null){
-            userInfoViewModel.updateValue(User?.name.toString(), "NAME")
+    fun updateViewModel(user : User?){
+        if(user?.name != null){
+            userInfoViewModel.updateValue(user?.name.toString(), "NAME")
         }
-        if(User?.nickname != null){
-            userInfoViewModel.updateValue(User?.nickname.toString(), "NICKNAME")
+        if(user?.nickname != null){
+            userInfoViewModel.updateValue(user?.nickname.toString(), "NICKNAME")
         }
-        if(User?.sex != null){
-            userInfoViewModel.updateValue(User?.sex.toString(), "SEX")
+        if(user?.sex != null){
+            userInfoViewModel.updateValue(user?.sex.toString(), "SEX")
         }
-        if(User?.univ != null){
-            userInfoViewModel.updateValue(User?.univ.toString(), "UNIV")
+        if(user?.univ != null){
+            userInfoViewModel.updateValue(user?.univ.toString(), "UNIV")
         }
-        if(User?.univ_email != null){
-            userInfoViewModel.updateValue(User?.univ_email.toString(), "UNIV_EMAIL")
+        if(user?.univ_email != null){
+            userInfoViewModel.updateValue(user?.univ_email.toString(), "UNIV_EMAIL")
         }
-        if(User?.major != null){
-            userInfoViewModel.updateValue(User?.grade.toString(), "GRADE")
+        if(user?.major != null){
+            userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
         }
-        if(User?.grade != null){
-            userInfoViewModel.updateValue(User?.major.toString(), "MAJOR")
+        if(user?.grade != null){
+            userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
+        }
+        if(user?.isEmailAuthenticated != null){
+            userInfoViewModel.updateValue(user?.isEmailAuthenticated.toString(), "AUTHENTICATE")
         }
     }
 }

@@ -10,5 +10,6 @@ data class User(
     val univ: String? = null,
     val univ_email: String? = null,
     val major:String? = null,
-    val grade:String? = null
+    val grade:String? = null,
+    val isEmailAuthenticated : String? = null
 )

@@ -56,7 +56,8 @@ class InputInformationFragment : Fragment() {
                         userInfoViewModel.nickname.value, userInfoViewModel.sex.value,
                         userInfoViewModel.city.value, userInfoViewModel.region.value,
                         userInfoViewModel.univ.value, userInfoViewModel.univEmail.value,
-                        userInfoViewModel.major.value, userInfoViewModel.grade.value
+                        userInfoViewModel.major.value, userInfoViewModel.grade.value,
+                        userInfoViewModel.isEmailAuthenticated.value
                     )
                     db.collection("Users").document(userId.toString())
                         .set(user)
@@ -75,9 +76,6 @@ class InputInformationFragment : Fragment() {
                         .show()
                 }
 
-
-
-
             Log.d(
                 "Cur user info : ", userInfoViewModel.name?.value.toString() + " "
                         + userInfoViewModel.nickname.value.toString() + " "
@@ -86,6 +84,7 @@ class InputInformationFragment : Fragment() {
                         + userInfoViewModel.univ.value.toString() + " "
                         + userInfoViewModel.univEmail.value.toString() + " "
                         + userInfoViewModel.major.value.toString() + " "
+                        + userInfoViewModel.isEmailAuthenticated.value.toString() + " "
             )
 
 
