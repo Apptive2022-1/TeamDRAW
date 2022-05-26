@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.teamdraw.models.User
 import com.example.teamdraw.databinding.FragmentInputInformationBinding
 import com.example.teamdraw.adapters.InputInformationViewPagerAdapter
+import com.example.teamdraw.ui.dialog.LoadingDialog
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -43,14 +44,19 @@ class InputInformationFragment : Fragment() {
         initInputInformationViewPager()
 
 
-        binding.btnBack.setOnClickListener {
-            //  "back 버튼 클릭시 firestore 데이터 저장"
+        binding.btnBack.setOnClickListener { //  "back 버튼 클릭시 firestore 데이터 저장"
+
+            binding.btnBack.isEnabled = false // 버튼 두번눌러지면 앱 터짐
+
+            val dialog = makeLoadingDialog() // Loading Dialog 호출
+            dialog.show()
+
+
             val userId = auth.currentUser?.uid // userId 가져오기
             val db = Firebase.firestore
             val dbRef = db.collection("Users").document(userId.toString())
             dbRef.get()
                 .addOnSuccessListener { document ->
-                    // document == null 인 경우는, 처음 가입하는 사용자
                     val user = User(
                         userId.toString(), userInfoViewModel.name.value,
                         userInfoViewModel.nickname.value, userInfoViewModel.sex.value,
@@ -63,6 +69,7 @@ class InputInformationFragment : Fragment() {
                         .set(user)
                         .addOnSuccessListener {
                             Log.d("DB Update ", "success")
+                            dialog.dismiss()
                             navHostController.popBackStack()
 
                         }
@@ -89,6 +96,10 @@ class InputInformationFragment : Fragment() {
 
 
         }
+    }
+
+    private fun makeLoadingDialog() : LoadingDialog {
+        return LoadingDialog(requireContext())
     }
 
     private fun initInputInformationViewPager() {

@@ -46,7 +46,7 @@ class UserInfoViewModel : ViewModel() {
     val isEmailAuthenticated: MutableLiveData<String>
         get() = _isEmailAuthenticated
 
-    init{
+    init {
         _isEmailAuthenticated.value = "false"
     }
 
@@ -80,7 +80,7 @@ class UserInfoViewModel : ViewModel() {
                 _region.value = value
             }
             "AUTHENTICATE" -> {
-                _region.value = value
+                _isEmailAuthenticated.value = value
             }
         }
     }

@@ -3,10 +3,13 @@ package com.example.teamdraw.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -38,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 액션바 관련 설정
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.my_nav_host) as NavHostFragment
@@ -56,9 +63,18 @@ class MainActivity : AppCompatActivity() {
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
             Log.d("dest : ", navHostController.graph.startDestDisplayName)
             when (destination.id) {
-                R.id.contestDetailFragment -> bottomNavBarHide()
-                R.id.inputInformationFragment -> bottomNavBarHide()
-                else -> bottomNavBarShow()
+                R.id.contestDetailFragment -> {
+                    supportActionBar?.hide()
+                    bottomNavBarHide()
+                }
+                R.id.inputInformationFragment -> {
+                    supportActionBar?.hide()
+                    bottomNavBarHide()
+                }
+                else -> {
+                    supportActionBar?.show()
+                    bottomNavBarShow()
+                }
             }
         }
     }
@@ -102,15 +118,6 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun handleInitLogin() {
-        getResultCode =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RESULT_FIRST_USER) { // 최초 로그인시에는 정보입력창으로 안내
-                    navHostController.navigate(R.id.action_contestFragment_to_inputInformationFragment)
-                }
-            }
-    }
-
     private fun updateViewModel(user: User?) {
         if(user?.name != null){
             userInfoViewModel.updateValue(user?.name.toString(), "NAME")
@@ -135,6 +142,23 @@ class MainActivity : AppCompatActivity() {
         }
         if(user?.isEmailAuthenticated != null){
             userInfoViewModel.updateValue(user?.isEmailAuthenticated.toString(), "AUTHENTICATE")
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.app_toolbar,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.edit_profile ->{
+            Log.d("toolbar : ", "profile")
+            navHostController.navigate(R.id.action_contestFragment_to_inputInformationFragment)
+            supportActionBar?.hide()
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
         }
     }
 }

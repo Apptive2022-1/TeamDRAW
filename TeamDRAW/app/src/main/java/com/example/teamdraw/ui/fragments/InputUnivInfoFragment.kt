@@ -59,13 +59,14 @@ class InputUnivInfoFragment : Fragment() {
                 binding.linearlayoutAuthenticationCode.visibility = View.GONE
             }
             else{
-                Toast.makeText(context, "인증에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "인증에 실패했습니다. 정확하게 입력해주세요.", Toast.LENGTH_SHORT).show()
                 Log.d("인증코드 ", "$authenticationCode  ${binding.etvInputAuthenticationCode.text}")
             }
         }
     }
 
     private fun initEmailAuthenticateButton() {
+        Log.d("email : ", userInfoViewModel.isEmailAuthenticated.value.toString())
         when (userInfoViewModel.isEmailAuthenticated.value) {
             "true" -> { // 이미 인증 했으면 버튼 막음
                 binding.btnSendAuthenticationEmail.text = "인증완료"
