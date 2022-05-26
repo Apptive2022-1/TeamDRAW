@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/contestFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_contest"
+        android:title="@string/bottom_menu_contest"/>
+
+    <item
+        android:id="@+id/findingTeamMembersFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_finding_team_member"
+        android:title="@string/bottom_menu_member" />
+    <item
+        android:id="@+id/smallGroupRoomFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_nav_small_group_room"
+        android:title="@string/bottom_menu_group"/>
+</menu>

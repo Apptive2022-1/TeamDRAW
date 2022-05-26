@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.teamdraw.viewmodels.UserInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearlayout_authenticationCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/etv_input_univ_email"
+            app:layout_constraintStart_toStartOf="@+id/etv_input_univ_email"
+            app:layout_constraintTop_toBottomOf="@+id/etv_input_univ_email">
+
+            <EditText
+                android:id="@+id/etv_input_authenticationCode"
+                android:layout_width="147dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/rectangle_4"
+                android:hint="인증 코드"
+                android:inputType="text"
+                android:paddingLeft="13dp"
+                android:textColor="#9E9E9E" />
+
+            <Button
+                android:id="@+id/btn_compareAuthenticationCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="인증하기" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="저희가 당신을 어떻게 불러드리면 좋을까요?"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etv_input_univ_name"
+            android:layout_width="297dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/rectangle_4"
+            android:hint="학교"
+            android:text="@{user.univ}"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColor="#9E9E9E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/etv_input_univ_email"
+            android:layout_width="297dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangle_4"
+            android:hint="학교 웹메일 인증"
+            android:text="@{user.univEmail}"
+            android:inputType="text"
+            android:paddingLeft="13dp"
+            android:textColor="#9E9E9E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etv_input_univ_name" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sendAuthenticationEmail"
+            android:layout_width="297dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:text="인증 코드 전송"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_authenticationCode" />
+
+        <EditText
+            android:id="@+id/etv_input_univ_major"
+            android:layout_width="297dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rectangle_4"
+            android:hint="전공"
+            android:inputType="text"
+            android:paddingLeft="13dp"
+            android:text="@{user.major}"
+            android:textColor="#9E9E9E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sendAuthenticationEmail" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rectangle_4_smallsize"
+            android:hint="학년"
+            android:text="@{user.grade}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/etv_input_univ_major"
+            app:layout_constraintTop_toBottomOf="@+id/etv_input_univ_major"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="팝업 메뉴로 구현 예정"
+            app:layout_constraintStart_toEndOf="@+id/btn_grade"
+            app:layout_constraintTop_toTopOf="@+id/btn_grade" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

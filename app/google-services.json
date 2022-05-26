@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843184240163",
+    "project_id": "teamdraw-e3558",
+    "storage_bucket": "teamdraw-e3558.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843184240163:android:361b482b31d3206f9aa396",
+        "android_client_info": {
+          "package_name": "com.example.teamdraw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843184240163-f6v83ukkte189p8jmhmuhhi7hr1t97ah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj9Rzf7MAVQvnsbzH5ZY6zmTnrPGmxQHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843184240163-f6v83ukkte189p8jmhmuhhi7hr1t97ah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
