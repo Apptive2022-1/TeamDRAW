@@ -12,9 +12,10 @@ class UserInfoViewModel : ViewModel() {
     private val _grade = MutableLiveData<String>()
     private val _sex = MutableLiveData<String>()
     private val _major = MutableLiveData<String>()
-    private val _city = MutableLiveData<String>()
-    private val _region = MutableLiveData<String>()
+    private val _local = MutableLiveData<String>()
     private val _isEmailAuthenticated = MutableLiveData<String>()
+    private val _departureList = MutableLiveData<MutableList<String>>()
+    private val _positionList = MutableLiveData<MutableList<String>>()
 
     val name: MutableLiveData<String>
         get() = _name
@@ -37,17 +38,22 @@ class UserInfoViewModel : ViewModel() {
     val major: MutableLiveData<String>
         get() = _major
 
-    val city: MutableLiveData<String>
-        get() = _city
-
-    val region: MutableLiveData<String>
-        get() = _region
+    val local: MutableLiveData<String>
+        get() = _local
 
     val isEmailAuthenticated: MutableLiveData<String>
         get() = _isEmailAuthenticated
 
+    val departureList: MutableLiveData<MutableList<String>>
+        get() = _departureList
+
+    val positionList: MutableLiveData<MutableList<String>>
+        get() = _positionList
+
     init {
         _isEmailAuthenticated.value = "false"
+        _departureList.value = mutableListOf()
+        _positionList.value = mutableListOf()
     }
 
     fun updateValue(value: String, member: String) {
@@ -73,14 +79,31 @@ class UserInfoViewModel : ViewModel() {
             "MAJOR" -> {
                 _major.value = value
             }
-            "CITY" -> {
-                _city.value = value
-            }
-            "REGION" -> {
-                _region.value = value
+            "LOCAL" -> {
+                _local.value = value
             }
             "AUTHENTICATE" -> {
                 _isEmailAuthenticated.value = value
+            }
+        }
+    }
+    fun addList(value:String, member : String){
+        when(member){
+            "DEPARTURE" ->{
+                _departureList.value?.add(value)
+            }
+            "POSITION" ->{
+                _positionList.value?.add(value)
+            }
+        }
+    }
+    fun removeList(value:String, member : String){
+        when(member){
+            "DEPARTURE" ->{
+                _departureList.value?.remove(value)
+            }
+            "POSITION" ->{
+                _positionList.value?.remove(value)
             }
         }
     }

@@ -135,13 +135,26 @@ class MainActivity : AppCompatActivity() {
             userInfoViewModel.updateValue(user?.univ_email.toString(), "UNIV_EMAIL")
         }
         if(user?.major != null){
-            userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
+            userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
         }
         if(user?.grade != null){
-            userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
+            userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
+        }
+        if(user?.local != null){
+            userInfoViewModel.updateValue(user?.local.toString(), "LOCAL")
         }
         if(user?.isEmailAuthenticated != null){
             userInfoViewModel.updateValue(user?.isEmailAuthenticated.toString(), "AUTHENTICATE")
+        }
+        if(user?.departureList != null){
+            for(value in user?.departureList){
+                userInfoViewModel.addList(value, "DEPARTURE")
+            }
+        }
+        if(user?.positionList != null){
+            for(value in user?.positionList){
+                userInfoViewModel.addList(value, "POSITION")
+            }
         }
     }
 

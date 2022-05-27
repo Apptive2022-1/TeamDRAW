@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.teamdraw.R
@@ -15,27 +16,21 @@ class InputLocalFragment : Fragment() {
     private val userInfoViewModel: UserInfoViewModel by activityViewModels()
     private lateinit var binding: FragmentInputLocalBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentInputLocalBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         binding.user = userInfoViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        InitSexButton()
-        onSexChanged()
+        InitButton()
+        dataChanged()
     }
 
-    fun onSexChanged() {
+    fun dataChanged() {
         binding.btnMale.setOnClickListener {
             binding.btnFemale.setBackgroundResource(R.drawable.frame_btn_notselected)
             binding.btnMale.setBackgroundResource(R.drawable.frame_btn_selected)
@@ -46,9 +41,14 @@ class InputLocalFragment : Fragment() {
             binding.btnMale.setBackgroundResource(R.drawable.frame_btn_notselected)
             userInfoViewModel.updateValue("female","SEX")
         }
+        binding.etvInputLocal.doAfterTextChanged {
+            userInfoViewModel.updateValue(binding.etvInputLocal.text.toString(), "LOCAL")
+        }
+
+
     }
 
-    fun InitSexButton() {
+    fun InitButton() {
         when (userInfoViewModel.sex?.value) {
             "male" -> {
                 binding.btnMale.setBackgroundResource(R.drawable.frame_btn_selected)

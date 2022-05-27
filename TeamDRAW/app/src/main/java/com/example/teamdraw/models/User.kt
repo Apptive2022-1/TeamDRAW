@@ -5,11 +5,12 @@ data class User(
     val name: String? = null,
     val nickname: String? = null,
     val sex: String? = null,
-    val city: String? = null, // 시/도
-    val region: String? = null, // 지역구
+    val local: String? = null,
     val univ: String? = null,
     val univ_email: String? = null,
     val major:String? = null,
     val grade:String? = null,
-    val isEmailAuthenticated : String? = null
+    val isEmailAuthenticated : String? = null,
+    val departureList : MutableList<String>?  = null,
+    val positionList : MutableList<String>?  = null
 )

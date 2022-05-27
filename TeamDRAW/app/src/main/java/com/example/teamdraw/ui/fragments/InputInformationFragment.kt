@@ -10,9 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.teamdraw.models.User
-import com.example.teamdraw.databinding.FragmentInputInformationBinding
+import androidx.viewpager2.widget.ViewPager2
 import com.example.teamdraw.adapters.InputInformationViewPagerAdapter
+import com.example.teamdraw.databinding.FragmentInputInformationBinding
+import com.example.teamdraw.models.User
 import com.example.teamdraw.ui.dialog.LoadingDialog
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -43,7 +44,6 @@ class InputInformationFragment : Fragment() {
         navHostController = findNavController()
         initInputInformationViewPager()
 
-
         binding.btnBack.setOnClickListener { //  "back 버튼 클릭시 firestore 데이터 저장"
 
             binding.btnBack.isEnabled = false // 버튼 두번눌러지면 앱 터짐
@@ -60,10 +60,10 @@ class InputInformationFragment : Fragment() {
                     val user = User(
                         userId.toString(), userInfoViewModel.name.value,
                         userInfoViewModel.nickname.value, userInfoViewModel.sex.value,
-                        userInfoViewModel.city.value, userInfoViewModel.region.value,
-                        userInfoViewModel.univ.value, userInfoViewModel.univEmail.value,
-                        userInfoViewModel.major.value, userInfoViewModel.grade.value,
-                        userInfoViewModel.isEmailAuthenticated.value
+                        userInfoViewModel.local.value, userInfoViewModel.univ.value,
+                        userInfoViewModel.univEmail.value, userInfoViewModel.major.value,
+                        userInfoViewModel.grade.value, userInfoViewModel.isEmailAuthenticated.value,
+                        userInfoViewModel.departureList.value, userInfoViewModel.positionList.value
                     )
                     db.collection("Users").document(userId.toString())
                         .set(user)
@@ -93,18 +93,31 @@ class InputInformationFragment : Fragment() {
                         + userInfoViewModel.major.value.toString() + " "
                         + userInfoViewModel.isEmailAuthenticated.value.toString() + " "
             )
-
-
         }
     }
 
-    private fun makeLoadingDialog() : LoadingDialog {
+    private fun makeLoadingDialog(): LoadingDialog {
         return LoadingDialog(requireContext())
     }
 
     private fun initInputInformationViewPager() {
         val vpAdapter = InputInformationViewPagerAdapter(this)
         binding.vpInputInformation.adapter = vpAdapter // 정보입력 화면 뷰페이저로 연결
+        binding.vpInputInformation.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                when (position) {
+                    0 -> binding.tvPageDescription.text = "기본정보 입력"
+                    1 -> binding.tvPageDescription.text = "기본정보 입력"
+                    2 -> binding.tvPageDescription.text = "기본정보 입력"
+                    3 -> binding.tvPageDescription.text = "성향체크"
+                    4 -> binding.tvPageDescription.text = "성향체크"
+                    5 -> binding.tvPageDescription.text = "성향체크"
+                    6 -> binding.tvPageDescription.text = "스킬셋, 툴"
+                    7 -> binding.tvPageDescription.text = "스킬셋, 툴"
+                }
+            }
+        })
     }
 
 

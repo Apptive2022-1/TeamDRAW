@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -69,35 +70,16 @@
             app:layout_constraintStart_toStartOf="@+id/btn_male"
             app:layout_constraintTop_toBottomOf="@id/btn_male" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_select_city"
-            android:layout_width="125dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="8dp"
-            android:text="시/도"
-            app:layout_constraintEnd_toStartOf="@+id/btn_female"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView2" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_select_region"
-            android:layout_width="125dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="8dp"
-            android:text="구"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_male"
-            app:layout_constraintTop_toBottomOf="@id/textView2" />
-
-        <TextView
+        <EditText
+            android:id="@+id/etv_input_local"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="시/도 구 api 사용해야 할 거 같음"
-            app:layout_constraintStart_toStartOf="@id/btn_select_city"
-            app:layout_constraintTop_toBottomOf="@id/btn_select_city" />
+            android:inputType="textPersonName"
+            android:text="@{user.local}"
+            android:hint="ex) 부산광역시, 경상남도 창원시"
+            app:layout_constraintStart_toStartOf="@+id/btn_male"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
