@@ -10,7 +10,8 @@ data class User(
     val univ_email: String? = null,
     val major:String? = null,
     val grade:String? = null,
-    val isEmailAuthenticated : String? = null,
+    val emailAuthenticated : String? = null,
     val departureList : MutableList<String>?  = null,
-    val positionList : MutableList<String>?  = null
+    val positionList : MutableList<String>?  = null,
+    val positionDetailList : MutableList<String>? = null
 )

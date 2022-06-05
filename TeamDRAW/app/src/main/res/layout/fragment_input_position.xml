@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -52,8 +51,8 @@
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:background="@drawable/frame_btn_notselected2"
-                android:text="기획/아이디어"
                 android:textSize="10sp"
+                android:text="기획/아이디어"
                 app:layout_constraintBottom_toTopOf="@+id/btn_depart5"
                 app:layout_constraintEnd_toStartOf="@+id/btn_depart2"
                 app:layout_constraintHorizontal_bias="0.5"

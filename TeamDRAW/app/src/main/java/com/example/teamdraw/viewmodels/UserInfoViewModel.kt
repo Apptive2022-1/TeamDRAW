@@ -13,9 +13,10 @@ class UserInfoViewModel : ViewModel() {
     private val _sex = MutableLiveData<String>()
     private val _major = MutableLiveData<String>()
     private val _local = MutableLiveData<String>()
-    private val _isEmailAuthenticated = MutableLiveData<String>()
+    private val _emailAuthenticated = MutableLiveData<String>()
     private val _departureList = MutableLiveData<MutableList<String>>()
     private val _positionList = MutableLiveData<MutableList<String>>()
+    private val _positionDetailList = MutableLiveData<MutableList<String>>()
 
     val name: MutableLiveData<String>
         get() = _name
@@ -41,19 +42,22 @@ class UserInfoViewModel : ViewModel() {
     val local: MutableLiveData<String>
         get() = _local
 
-    val isEmailAuthenticated: MutableLiveData<String>
-        get() = _isEmailAuthenticated
+    val emailAuthenticated: MutableLiveData<String>
+        get() = _emailAuthenticated
 
     val departureList: MutableLiveData<MutableList<String>>
         get() = _departureList
 
     val positionList: MutableLiveData<MutableList<String>>
         get() = _positionList
+    val positionDetailList: MutableLiveData<MutableList<String>>
+        get() = _positionDetailList
 
     init {
-        _isEmailAuthenticated.value = "false"
+        _emailAuthenticated.value = "false"
         _departureList.value = mutableListOf()
         _positionList.value = mutableListOf()
+        _positionDetailList.value = mutableListOf()
     }
 
     fun updateValue(value: String, member: String) {
@@ -83,7 +87,7 @@ class UserInfoViewModel : ViewModel() {
                 _local.value = value
             }
             "AUTHENTICATE" -> {
-                _isEmailAuthenticated.value = value
+                _emailAuthenticated.value = value
             }
         }
     }
@@ -95,6 +99,9 @@ class UserInfoViewModel : ViewModel() {
             "POSITION" ->{
                 _positionList.value?.add(value)
             }
+            "POSITION_DETAIL" ->{
+                _positionDetailList.value?.add(value)
+            }
         }
     }
     fun removeList(value:String, member : String){
@@ -105,8 +112,12 @@ class UserInfoViewModel : ViewModel() {
             "POSITION" ->{
                 _positionList.value?.remove(value)
             }
+            "POSITION_DETAIL" ->{
+                _positionDetailList.value?.remove(value)
+            }
         }
     }
 
 
 }
+

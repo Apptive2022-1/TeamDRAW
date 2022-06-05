@@ -143,8 +143,8 @@ class MainActivity : AppCompatActivity() {
         if(user?.local != null){
             userInfoViewModel.updateValue(user?.local.toString(), "LOCAL")
         }
-        if(user?.isEmailAuthenticated != null){
-            userInfoViewModel.updateValue(user?.isEmailAuthenticated.toString(), "AUTHENTICATE")
+        if(user?.emailAuthenticated != null){
+            userInfoViewModel.updateValue(user?.emailAuthenticated.toString(), "AUTHENTICATE")
         }
         if(user?.departureList != null){
             for(value in user?.departureList){
@@ -154,6 +154,11 @@ class MainActivity : AppCompatActivity() {
         if(user?.positionList != null){
             for(value in user?.positionList){
                 userInfoViewModel.addList(value, "POSITION")
+            }
+        }
+        if(user?.positionDetailList != null){
+            for(value in user?.positionDetailList){
+                userInfoViewModel.addList(value, "POSITION_DETAIL")
             }
         }
     }

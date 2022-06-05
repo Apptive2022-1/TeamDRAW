@@ -34,7 +34,11 @@ class InputUnivInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         updateUnivInfo()
         initEmailAuthenticateButton() // 이메일 인증 버튼
+        initSendAutneitcateCondeButton() // 인증코드 전송 버튼
+        initConfirmAuthenticateCodeButton() // 인증코드 확인버튼
 
+    }
+    private fun initSendAutneitcateCondeButton(){
         // 인증메일 전송 버튼
         binding.btnSendAuthenticationEmail.setOnClickListener {
             val toemail = binding.etvInputUnivEmail.text.toString()
@@ -49,11 +53,13 @@ class InputUnivInfoFragment : Fragment() {
                 Toast.makeText(context, "이메일이 ac.kr로 끝나야합니다 !", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun initConfirmAuthenticateCodeButton() {
         // 인증코드 확인 버튼
         binding.btnCompareAuthenticationCode.setOnClickListener{
             if(authenticationCode == binding.etvInputAuthenticationCode.text.toString()){ // 코드가 일치하면
-                userInfoViewModel.isEmailAuthenticated.value = "true"
+                userInfoViewModel.emailAuthenticated.value = "true"
                 binding.btnSendAuthenticationEmail.text = "인증완료"
                 binding.btnSendAuthenticationEmail.isEnabled = false // 버튼막기
                 binding.linearlayoutAuthenticationCode.visibility = View.GONE
@@ -66,8 +72,8 @@ class InputUnivInfoFragment : Fragment() {
     }
 
     private fun initEmailAuthenticateButton() {
-        Log.d("email : ", userInfoViewModel.isEmailAuthenticated.value.toString())
-        when (userInfoViewModel.isEmailAuthenticated.value) {
+        Log.d("email : ", userInfoViewModel.emailAuthenticated.value.toString())
+        when (userInfoViewModel.emailAuthenticated.value.toString()) {
             "true" -> { // 이미 인증 했으면 버튼 막음
                 binding.btnSendAuthenticationEmail.text = "인증완료"
                 binding.btnSendAuthenticationEmail.isEnabled = false // 버튼막기

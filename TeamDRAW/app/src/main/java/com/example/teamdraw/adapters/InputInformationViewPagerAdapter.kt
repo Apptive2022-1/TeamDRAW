@@ -2,13 +2,10 @@ package com.example.teamdraw.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.teamdraw.ui.fragments.InputLocalFragment
-import com.example.teamdraw.ui.fragments.InputNameFragment
-import com.example.teamdraw.ui.fragments.InputPositionFragment
-import com.example.teamdraw.ui.fragments.InputUnivInfoFragment
+import com.example.teamdraw.ui.fragments.*
 
 class InputInformationViewPagerAdapter(fm : Fragment) : FragmentStateAdapter(fm) {
-    private val PAGENUMBER = 4
+    private val PAGENUMBER = 5
     override fun getItemCount(): Int {
         return PAGENUMBER
     }
@@ -19,6 +16,7 @@ class InputInformationViewPagerAdapter(fm : Fragment) : FragmentStateAdapter(fm)
             1-> InputLocalFragment()
             2-> InputUnivInfoFragment()
             3-> InputPositionFragment()
+            4-> InputPositionDetailFragment()
             else-> InputNameFragment()
         }
     }

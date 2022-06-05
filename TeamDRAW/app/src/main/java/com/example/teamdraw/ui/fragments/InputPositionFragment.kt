@@ -71,7 +71,6 @@ class InputPositionFragment : Fragment(), View.OnClickListener{
 
     override fun onClick(btn: View?) {
         val button = view?.findViewById<Button>(btn!!.id)
-
         if(btn!!.id >= 2131296920 ){ // position 부분
             Log.d("id ", "position")
             if (userInfoViewModel.positionList.value!!.contains(button!!.text.toString())){ // 해당 분야를 선택 해제
