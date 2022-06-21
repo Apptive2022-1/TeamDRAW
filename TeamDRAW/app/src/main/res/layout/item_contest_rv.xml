@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="contest"
             type="com.example.teamdraw.models.Contest" />
@@ -22,8 +21,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="Contest Image"
                 android:src="@drawable/placeholder_contest_image" />
@@ -32,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textSize="13sp"
                 android:text="@{contest.title}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

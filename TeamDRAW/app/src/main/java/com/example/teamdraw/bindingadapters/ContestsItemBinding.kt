@@ -10,7 +10,6 @@ import java.lang.Exception
 
 class ContestsItemBinding {
     companion object{
-
         @BindingAdapter("onContestClickListener")
         @JvmStatic
         fun onContestClickListener(contestItemCardView: CardView, contest: Contest){
@@ -23,6 +22,5 @@ class ContestsItemBinding {
                 }
             }
         }
-
     }
 }
