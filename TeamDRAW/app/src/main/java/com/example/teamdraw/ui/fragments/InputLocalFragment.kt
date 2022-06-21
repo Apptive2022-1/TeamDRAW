@@ -26,7 +26,7 @@ class InputLocalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        InitButton()
+        initButton()
         dataChanged()
     }
 
@@ -48,7 +48,7 @@ class InputLocalFragment : Fragment() {
 
     }
 
-    fun InitButton() {
+    fun initButton() {
         when (userInfoViewModel.sex?.value) {
             "male" -> {
                 binding.btnMale.setBackgroundResource(R.drawable.frame_btn_selected)

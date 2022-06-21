@@ -36,6 +36,9 @@
         <argument
             android:name="contest"
             app:argType="com.example.teamdraw.models.Contest"/>
+        <action
+            android:id="@+id/action_contestDetailFragment_to_findingTeamMembersFragment"
+            app:destination="@id/findingTeamMembersFragment" />
     </fragment>
             
     <fragment

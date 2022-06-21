@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@color/purple_200"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/placeholder_contest_detail"
                     app:layout_constraintTop_toBottomOf="@id/contest_title_tv" />
 
@@ -62,10 +62,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@color/purple_200"
                     android:padding="5dp"
                     android:text="디자인"
-                    android:textSize="10sp"
                     app:layout_constraintStart_toStartOf="@id/contest_field_tv"
                     app:layout_constraintTop_toBottomOf="@id/contest_field_tv" />
 
@@ -74,10 +72,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:background="@color/purple_200"
                     android:padding="5dp"
                     android:text="사진"
-                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv1"
                     app:layout_constraintStart_toEndOf="@id/tv1"
                     app:layout_constraintTop_toTopOf="@id/tv1" />
@@ -87,10 +83,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:background="@color/purple_200"
                     android:padding="5dp"
                     android:text="예술"
-                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv2"
                     app:layout_constraintStart_toEndOf="@id/tv2"
                     app:layout_constraintTop_toTopOf="@id/tv2" />
@@ -100,10 +94,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:background="@color/purple_200"
                     android:padding="5dp"
                     android:text="영상"
-                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv3"
                     app:layout_constraintStart_toEndOf="@id/tv3"
                     app:layout_constraintTop_toTopOf="@id/tv3" />
@@ -125,10 +117,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@color/purple_200"
                     android:padding="5dp"
                     android:text="마감 30일 전"
-                    android:textSize="11sp"
                     app:layout_constraintStart_toStartOf="@id/contest_period_tv"
                     app:layout_constraintTop_toBottomOf="@id/contest_period_tv" />
 
@@ -139,7 +129,6 @@
                     android:layout_marginStart="24dp"
                     android:padding="5dp"
                     android:text="@{contest.period}"
-                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv5"
                     app:layout_constraintStart_toEndOf="@id/tv5"
                     app:layout_constraintTop_toTopOf="@id/tv5" />
@@ -149,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
-                    android:text="주최기간"
+                    android:text="주최기관"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/tv5"
@@ -189,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
-                    android:text="상세규모"
+                    android:text="상세 내용"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/contest_reward_content_tv"
@@ -199,10 +188,18 @@
                     android:id="@+id/contest_detail_content_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{contest.detail}"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintStart_toStartOf="@id/contest_detail_tv"
                     app:layout_constraintTop_toBottomOf="@id/contest_detail_tv" />
+
+                <View
+                    app:layout_constraintTop_toBottomOf="@id/contest_detail_content_tv"
+                    app:layout_constraintStart_toStartOf="@id/contest_detail_content_tv"
+                    app:layout_constraintEnd_toEndOf="@id/contest_detail_content_tv"
+                    android:layout_width="10dp"
+                    android:layout_height="100dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
@@ -220,7 +217,8 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="#F4F4F4"
                     android:src="@drawable/purple_heart"
                     app:layout_constraintBottom_toBottomOf="@id/frame_btn"
                     app:layout_constraintEnd_toStartOf="@id/frame_btn"
@@ -230,7 +228,7 @@
                     android:id="@+id/frame_btn"
                     android:layout_width="250dp"
                     android:layout_height="45dp"
-                    android:layout_marginStart="85dp"
+                    android:layout_marginStart="100dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/frame_layout_btn_gradient"
                     android:text="팀원찾기"
