@@ -27,7 +27,11 @@
         android:id="@+id/findingTeamMembersFragment"
         android:name="com.example.teamdraw.ui.fragments.FindingTeamMembersFragment"
         android:label="fragment_finding_team_members"
-        tools:layout="@layout/fragment_finding_team_members" />
+        tools:layout="@layout/fragment_finding_team_members" >
+        <action
+            android:id="@+id/action_findingTeamMembersFragment_to_wantingTeamFragment"
+            app:destination="@id/wantingTeamFragment" />
+    </fragment>
     <fragment
         android:id="@+id/contestDetailFragment"
         android:name="com.example.teamdraw.ui.fragments.ContestDetailFragment"
@@ -46,4 +50,24 @@
         android:name="com.example.teamdraw.ui.fragments.InputInformationFragment"
         android:label="fragment_input_information"
         tools:layout="@layout/fragment_input_information"/>
+    <fragment
+        android:id="@+id/wantingTeamFragment"
+        android:name="com.example.teamdraw.ui.fragments.WantingTeamFragment"
+        android:label="fragment_wanting_team"
+        tools:layout="@layout/fragment_wanting_team" >
+        <action
+            android:id="@+id/action_wantingTeamFragment_to_wantingTeamFragmentDetail"
+            app:destination="@id/wantingTeamFragmentDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/wantingTeamFragmentDetail"
+        android:name="com.example.teamdraw.ui.fragments.WantingTeamFragmentDetail"
+        android:label="fragment_wanting_team_detail"
+        tools:layout="@layout/fragment_wanting_team_detail" >
+        <argument
+            android:name="filter"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue='"me"' />
+    </fragment>
 </navigation>

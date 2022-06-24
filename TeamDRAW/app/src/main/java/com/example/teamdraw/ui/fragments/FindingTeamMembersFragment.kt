@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.databinding.FragmentFindingTeamMembersBinding
 import com.example.teamdraw.adapters.RecruitRVAdapter
@@ -34,11 +35,15 @@ class FindingTeamMembersFragment : Fragment() {
                 adapter = recruitAdapter
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             }
-            with(wantingRv) {
+            with(wantingRv1) {
                 adapter = wantingAdapter
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
+            iv1.setOnClickListener {
+                findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToWantingTeamFragment())
+            }
         }
+
         return binding.root
     }
 }
