@@ -15,6 +15,11 @@
         <item>과거순</item>
     </string-array>
 
+    <string-array name="spinner_wanting_array">
+        <item>나에게 관심 가지는 버디</item>
+        <item>나와 다른 포지션의 버디</item>
+        <item>나와 같은 포지션의 버디</item>
+    </string-array>
 
     <string name="facebook_app_id">1156498925135622</string>
     <string name="fb_login_protocol_scheme">fb1156498925135622</string>
