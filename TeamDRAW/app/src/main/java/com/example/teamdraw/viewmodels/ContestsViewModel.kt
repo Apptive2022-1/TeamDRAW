@@ -14,10 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ContestsViewModel @Inject constructor(
-    application: Application,
-    private val repository: Repository
-) : AndroidViewModel(application) {
+class ContestsViewModel @Inject constructor(application: Application, private val repository: Repository)
+    : AndroidViewModel(application) {
 
     init {
         insertContest()

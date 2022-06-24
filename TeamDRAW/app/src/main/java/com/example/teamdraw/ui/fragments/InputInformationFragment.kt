@@ -73,7 +73,8 @@ class InputInformationFragment : Fragment() {
                         userInfoViewModel.univEmail.value, userInfoViewModel.major.value,
                         userInfoViewModel.grade.value, userInfoViewModel.emailAuthenticated.value,
                         userInfoViewModel.departureList.value, userInfoViewModel.positionList.value,
-                        userInfoViewModel.positionDetailList.value
+                        userInfoViewModel.positionDetailList.value, userInfoViewModel.selfItroduce.value,
+                        userInfoViewModel.personalLink.value
                     )
 
                     db.collection("Users").document(userId.toString())
@@ -126,6 +127,7 @@ class InputInformationFragment : Fragment() {
                     5 -> binding.tvPageDescription.text = "성향체크"
                     6 -> binding.tvPageDescription.text = "스킬셋, 툴"
                     7 -> binding.tvPageDescription.text = "스킬셋, 툴"
+                    8->  binding.tvPageDescription.text = "프로필 설정"
                 }
             }
         })

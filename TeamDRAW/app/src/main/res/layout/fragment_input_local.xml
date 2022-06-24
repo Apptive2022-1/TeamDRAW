@@ -75,11 +75,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:hint="ex) 부산광역시, 경상남도 창원시"
             android:inputType="textPersonName"
             android:text="@{user.local}"
-            android:hint="ex) 부산광역시, 경상남도 창원시"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/btn_male"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
