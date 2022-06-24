@@ -13,5 +13,7 @@ data class User(
     val emailAuthenticated : String? = null,
     val departureList : MutableList<String>?  = null,
     val positionList : MutableList<String>?  = null,
-    val positionDetailList : MutableList<String>? = null
+    val positionDetailList : MutableList<String>? = null,
+    val selfIntroduce:String? = null,
+    val personalLink:String? = null,
 )

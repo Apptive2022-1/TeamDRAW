@@ -17,6 +17,9 @@ class UserInfoViewModel : ViewModel() {
     private val _departureList = MutableLiveData<MutableList<String>>()
     private val _positionList = MutableLiveData<MutableList<String>>()
     private val _positionDetailList = MutableLiveData<MutableList<String>>()
+    private val _selfIntroduce = MutableLiveData<String>()
+    private val _personalLink = MutableLiveData<String>()
+
 
     val name: MutableLiveData<String>
         get() = _name
@@ -52,6 +55,13 @@ class UserInfoViewModel : ViewModel() {
         get() = _positionList
     val positionDetailList: MutableLiveData<MutableList<String>>
         get() = _positionDetailList
+
+    val selfItroduce: MutableLiveData<String>
+        get() = _selfIntroduce
+
+    val personalLink: MutableLiveData<String>
+        get() = _personalLink
+
 
     init {
         _emailAuthenticated.value = "false"
@@ -89,6 +99,12 @@ class UserInfoViewModel : ViewModel() {
             "AUTHENTICATE" -> {
                 _emailAuthenticated.value = value
             }
+            "SELFINTRODUCE"->{
+                _selfIntroduce.value = value
+            }
+            "PERSONALLINK"->{
+                _personalLink.value = value
+            }
         }
     }
     fun addList(value:String, member : String){
@@ -102,6 +118,7 @@ class UserInfoViewModel : ViewModel() {
             "POSITION_DETAIL" ->{
                 _positionDetailList.value?.add(value)
             }
+
         }
     }
     fun removeList(value:String, member : String){

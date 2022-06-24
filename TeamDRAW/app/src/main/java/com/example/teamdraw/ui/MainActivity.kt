@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        
         // 액션바 관련 설정
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun updateViewModel(user: User?) {
+    fun updateViewModel(user: User?) {
         if(user?.name != null){
             userInfoViewModel.updateValue(user?.name.toString(), "NAME")
         }
@@ -161,6 +162,13 @@ class MainActivity : AppCompatActivity() {
                 userInfoViewModel.addList(value, "POSITION_DETAIL")
             }
         }
+        if(user?.selfIntroduce != null){
+            userInfoViewModel.updateValue(user?.selfIntroduce.toString(), "SELFINTRODUCE")
+        }
+        if(user?.personalLink != null){
+            userInfoViewModel.updateValue(user?.personalLink.toString(), "PERSONALLINK")
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

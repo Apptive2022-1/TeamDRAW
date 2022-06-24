@@ -181,5 +181,11 @@ class LoginActivity : AppCompatActivity() {
                 userInfoViewModel.addList(value, "POSITION_DETAIL")
             }
         }
+        if(user?.selfIntroduce != null){
+            userInfoViewModel.updateValue(user?.selfIntroduce.toString(), "SELFINTRODUCE")
+        }
+        if(user?.personalLink != null){
+            userInfoViewModel.updateValue(user?.personalLink.toString(), "PERSONALLINK")
+        }
     }
 }
