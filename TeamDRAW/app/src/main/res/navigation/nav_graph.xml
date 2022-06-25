@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_findingTeamMembersFragment_to_writeRecruitingFragment"
             app:destination="@id/writeRecruitingFragment" />
+        <action
+            android:id="@+id/action_findingTeamMembersFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/contestDetailFragment"
@@ -61,6 +64,9 @@
         <action
             android:id="@+id/action_wantingTeamFragment_to_wantingTeamFragmentDetail"
             app:destination="@id/wantingTeamFragmentDetail" />
+        <action
+            android:id="@+id/action_wantingTeamFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/wantingTeamFragmentDetail"
@@ -72,10 +78,18 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue='"me"' />
+        <action
+            android:id="@+id/action_wantingTeamFragmentDetail_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/writeRecruitingFragment"
         android:name="com.example.teamdraw.ui.fragments.WriteRecruitingFragment"
         android:label="fragment_write_recruiting"
         tools:layout="@layout/fragment_write_recruiting" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.teamdraw.ui.fragments.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
 </navigation>

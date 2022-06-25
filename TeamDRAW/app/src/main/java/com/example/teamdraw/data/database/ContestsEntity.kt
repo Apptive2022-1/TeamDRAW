@@ -1,5 +1,6 @@
 package com.example.teamdraw.data.database
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.teamdraw.models.Contest
@@ -8,6 +9,6 @@ import com.example.teamdraw.models.Contest
 class ContestsEntity(
     var contest: Contest
 ) {
-    @PrimaryKey()
-    var id: Long = 0L
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
 }

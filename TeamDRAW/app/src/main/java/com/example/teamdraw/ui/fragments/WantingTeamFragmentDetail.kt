@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,11 @@ class WantingTeamFragmentDetail : Fragment() {
         binding =  FragmentWantingTeamDetailBinding.inflate(inflater, container, false)
 
         val filter = args.filter
-        val wantingAdapter = WantingRVAdapter()
+        val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {
+            override fun onClick() {
+                findNavController().navigate(WantingTeamFragmentDetailDirections.actionWantingTeamFragmentDetailToUserProfileFragment())
+            }
+        })
 
         wantingAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15))
 
