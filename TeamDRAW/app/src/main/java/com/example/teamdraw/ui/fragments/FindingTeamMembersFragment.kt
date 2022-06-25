@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.databinding.FragmentFindingTeamMembersBinding
 import com.example.teamdraw.adapters.RecruitRVAdapter
 import com.example.teamdraw.adapters.WantingRVAdapter
+import com.example.teamdraw.ui.dialog.WantingDialog
+import com.example.teamdraw.ui.dialog.RecruitingDialogInterface
 
-class FindingTeamMembersFragment : Fragment() {
+class FindingTeamMembersFragment : Fragment(),RecruitingDialogInterface {
 
     private lateinit var binding: FragmentFindingTeamMembersBinding
 
@@ -26,7 +28,13 @@ class FindingTeamMembersFragment : Fragment() {
             false
         )
 
-        val recruitAdapter = RecruitRVAdapter()
+        val recruitAdapter = RecruitRVAdapter(object : RecruitRVAdapter.ItemClickListener{
+            override fun onClick() {
+                val dialog = WantingDialog(this@FindingTeamMembersFragment, "패키지 삭제?", 0 )
+                dialog.isCancelable = false
+                dialog.show(activity?.supportFragmentManager!!, "Confirm")
+            }
+        })
         val wantingAdapter = WantingRVAdapter()
         recruitAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
         wantingAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
@@ -48,5 +56,9 @@ class FindingTeamMembersFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onYesButtonClick(id: Int) {
+
     }
 }
