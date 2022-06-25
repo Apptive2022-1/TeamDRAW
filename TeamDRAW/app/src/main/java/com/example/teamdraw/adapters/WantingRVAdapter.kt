@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamdraw.databinding.ItemWantingBinding
 
-class WantingRVAdapter : RecyclerView.Adapter<WantingRVAdapter.WantingRVViewHolder>() {
+class WantingRVAdapter(var mItemClickListener: ItemClickListener) : RecyclerView.Adapter<WantingRVAdapter.WantingRVViewHolder>() {
 
     private var list = listOf<Int>()
 
@@ -17,7 +17,7 @@ class WantingRVAdapter : RecyclerView.Adapter<WantingRVAdapter.WantingRVViewHold
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): WantingRVViewHolder = WantingRVViewHolder.from(parent)
+    ): WantingRVViewHolder = WantingRVViewHolder.from(parent, mItemClickListener)
 
     override fun onBindViewHolder(
         holder: WantingRVViewHolder,
@@ -28,18 +28,26 @@ class WantingRVAdapter : RecyclerView.Adapter<WantingRVAdapter.WantingRVViewHold
 
     override fun getItemCount(): Int = list.size
 
-    class WantingRVViewHolder(binding: ItemWantingBinding) :
+    class WantingRVViewHolder(val binding: ItemWantingBinding, private val mItemClickListener: ItemClickListener) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
-            fun from(parent: ViewGroup): WantingRVViewHolder {
+            fun from(parent: ViewGroup, mItemClickListener: ItemClickListener): WantingRVViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemWantingBinding.inflate(layoutInflater, parent, false)
-                return WantingRVViewHolder(binding)
+                return WantingRVViewHolder(binding, mItemClickListener)
             }
+        }
+
+        init {
+            itemView.setOnClickListener { mItemClickListener.onClick() }
         }
 
         fun bind(n: Int) {
 
         }
+    }
+
+    interface ItemClickListener {
+        fun onClick()
     }
 }

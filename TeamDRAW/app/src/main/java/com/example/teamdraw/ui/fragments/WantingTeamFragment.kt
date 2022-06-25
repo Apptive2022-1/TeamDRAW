@@ -23,7 +23,11 @@ class WantingTeamFragment : Fragment() {
     ): View {
 
         binding = FragmentWantingTeamBinding.inflate(inflater, container, false)
-        val wantingAdapter = WantingRVAdapter()
+        val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {
+            override fun onClick() {
+                findNavController().navigate(WantingTeamFragmentDirections.actionWantingTeamFragmentToUserProfileFragment())
+            }
+        })
         val directions = WantingTeamFragmentDirections
         wantingAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
         binding.apply {

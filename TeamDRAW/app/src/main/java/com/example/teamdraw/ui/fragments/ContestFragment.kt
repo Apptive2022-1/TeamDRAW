@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.teamdraw.R
-import com.example.teamdraw.contest.ContestRVAdapter
+import com.example.teamdraw.adapters.ContestRVAdapter
 import com.example.teamdraw.databinding.FragmentContestBinding
 import com.example.teamdraw.viewmodels.ContestsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +33,8 @@ class ContestFragment : Fragment() {
         binding = FragmentContestBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
-        setRecyclerView()
         readDatabase()
+        setRecyclerView()
 
         val viewSpinner = binding.viewSpinner
         ArrayAdapter.createFromResource(
@@ -55,20 +55,6 @@ class ContestFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sortSpinner.adapter = adapter
         }
-
-//        binding.tabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                TODO("Not yet implemented")
-//            }
-//        })
 
         return binding.root
     }
