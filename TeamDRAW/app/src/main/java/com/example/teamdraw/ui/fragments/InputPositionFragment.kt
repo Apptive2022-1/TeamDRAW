@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -71,13 +72,13 @@ class InputPositionFragment : Fragment(), View.OnClickListener{
 
     override fun onClick(btn: View?) {
         val button = view?.findViewById<Button>(btn!!.id)
-        if(btn!!.id >= 2131296920 ){ // position 부분
+        if(btn!!.parent == view?.findViewById<ConstraintLayout>(R.id.constraintLayout_btnPosition) ){ // position 부분
             Log.d("id ", "position")
             if (userInfoViewModel.positionList.value!!.contains(button!!.text.toString())){ // 해당 분야를 선택 해제
                 btn.setBackgroundResource(R.drawable.frame_btn_notselected2)
                 userInfoViewModel.removeList(button!!.text.toString(),"POSITION")
             }
-            else { // 해당 분야를 선택
+            else { // 해당 포지션을 선택
                 btn.setBackgroundResource(R.drawable.frame_btn_selected2)
                 userInfoViewModel.addList(button!!.text.toString(),"POSITION")
             }
