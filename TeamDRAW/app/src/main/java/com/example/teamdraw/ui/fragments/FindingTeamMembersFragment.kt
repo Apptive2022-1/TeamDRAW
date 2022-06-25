@@ -42,6 +42,9 @@ class FindingTeamMembersFragment : Fragment() {
             iv1.setOnClickListener {
                 findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToWantingTeamFragment())
             }
+            iv2.setOnClickListener {
+                findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToWriteRecruitingFragment())
+            }
         }
 
         return binding.root
