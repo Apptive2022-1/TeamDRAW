@@ -178,7 +178,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.edit_profile ->{
             Log.d("toolbar : ", "profile")
-            navHostController.navigate(R.id.action_contestFragment_to_myProfileFragment)
+            navHostController.navigate(R.id.myProfileFragment)
+            supportActionBar?.hide()
+            true
+        }
+        R.id.message ->{
+            navHostController.navigate(R.id.chattingListFragment)
             supportActionBar?.hide()
             true
         }
