@@ -14,6 +14,9 @@
             android:id="@+id/action_contestFragment_to_contestDetailFragment"
             app:destination="@id/contestDetailFragment" />
         <action
+            android:id="@+id/action_contestFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+        <action
             android:id="@+id/action_contestFragment_to_inputInformationFragment"
             app:destination="@id/inputInformationFragment" />
 
@@ -27,7 +30,7 @@
         android:id="@+id/findingTeamMembersFragment"
         android:name="com.example.teamdraw.ui.fragments.FindingTeamMembersFragment"
         android:label="fragment_finding_team_members"
-        tools:layout="@layout/fragment_finding_team_members" >
+        tools:layout="@layout/fragment_finding_team_members">
         <action
             android:id="@+id/action_findingTeamMembersFragment_to_wantingTeamFragment"
             app:destination="@id/wantingTeamFragment" />
@@ -42,25 +45,25 @@
         android:id="@+id/contestDetailFragment"
         android:name="com.example.teamdraw.ui.fragments.ContestDetailFragment"
         android:label="fragment_contest_detail"
-        tools:layout="@layout/fragment_contest_detail" >
+        tools:layout="@layout/fragment_contest_detail">
         <argument
             android:name="contest"
-            app:argType="com.example.teamdraw.models.Contest"/>
+            app:argType="com.example.teamdraw.models.Contest" />
         <action
             android:id="@+id/action_contestDetailFragment_to_findingTeamMembersFragment"
             app:destination="@id/findingTeamMembersFragment" />
     </fragment>
-            
+
     <fragment
         android:id="@+id/inputInformationFragment"
         android:name="com.example.teamdraw.ui.fragments.InputInformationFragment"
         android:label="fragment_input_information"
-        tools:layout="@layout/fragment_input_information"/>
+        tools:layout="@layout/fragment_input_information" />
     <fragment
         android:id="@+id/wantingTeamFragment"
         android:name="com.example.teamdraw.ui.fragments.WantingTeamFragment"
         android:label="fragment_wanting_team"
-        tools:layout="@layout/fragment_wanting_team" >
+        tools:layout="@layout/fragment_wanting_team">
         <action
             android:id="@+id/action_wantingTeamFragment_to_wantingTeamFragmentDetail"
             app:destination="@id/wantingTeamFragmentDetail" />
@@ -72,12 +75,12 @@
         android:id="@+id/wantingTeamFragmentDetail"
         android:name="com.example.teamdraw.ui.fragments.WantingTeamFragmentDetail"
         android:label="fragment_wanting_team_detail"
-        tools:layout="@layout/fragment_wanting_team_detail" >
+        tools:layout="@layout/fragment_wanting_team_detail">
         <argument
             android:name="filter"
+            android:defaultValue='"me"'
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue='"me"' />
+            app:nullable="true" />
         <action
             android:id="@+id/action_wantingTeamFragmentDetail_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
@@ -92,4 +95,9 @@
         android:name="com.example.teamdraw.ui.fragments.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.teamdraw.ui.fragments.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
 </navigation>

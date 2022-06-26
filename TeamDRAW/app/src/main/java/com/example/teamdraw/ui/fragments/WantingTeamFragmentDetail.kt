@@ -18,14 +18,14 @@ import com.example.teamdraw.databinding.FragmentWantingTeamDetailBinding
 class WantingTeamFragmentDetail : Fragment() {
 
     private val args by navArgs<WantingTeamFragmentDetailArgs>()
-    lateinit var binding : FragmentWantingTeamDetailBinding
+    lateinit var binding: FragmentWantingTeamDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding =  FragmentWantingTeamDetailBinding.inflate(inflater, container, false)
+        binding = FragmentWantingTeamDetailBinding.inflate(inflater, container, false)
 
         val filter = args.filter
         val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {
@@ -50,7 +50,7 @@ class WantingTeamFragmentDetail : Fragment() {
         }
         filterSpinner.adapter = adapter
 
-        when(filter){
+        when (filter) {
             "me" -> filterSpinner.setSelection(0)
             "different" -> filterSpinner.setSelection(1)
             "same" -> filterSpinner.setSelection(2)
