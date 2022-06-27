@@ -9,7 +9,6 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -178,7 +177,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.edit_profile ->{
             Log.d("toolbar : ", "profile")
-            navHostController.navigate(R.id.action_contestFragment_to_inputInformationFragment)
+            navHostController.navigate(R.id.myProfileFragment)
+            supportActionBar?.hide()
+            true
+        }
+        R.id.message ->{
+            navHostController.navigate(R.id.chattingListFragment)
             supportActionBar?.hide()
             true
         }

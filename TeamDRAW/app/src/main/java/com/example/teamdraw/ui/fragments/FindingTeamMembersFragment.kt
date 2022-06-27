@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.databinding.FragmentFindingTeamMembersBinding
 import com.example.teamdraw.adapters.RecruitRVAdapter
 import com.example.teamdraw.adapters.WantingRVAdapter
+import com.example.teamdraw.ui.dialog.RecruitingDialog
+import com.example.teamdraw.ui.dialog.RecruitingDialogInterface
 
-class FindingTeamMembersFragment : Fragment() {
+class FindingTeamMembersFragment : Fragment(), RecruitingDialogInterface {
 
     private lateinit var binding: FragmentFindingTeamMembersBinding
 
@@ -26,8 +28,18 @@ class FindingTeamMembersFragment : Fragment() {
             false
         )
 
-        val recruitAdapter = RecruitRVAdapter()
-        val wantingAdapter = WantingRVAdapter()
+        val recruitAdapter = RecruitRVAdapter(object : RecruitRVAdapter.ItemClickListener {
+            override fun onClick() {
+                val dialog = RecruitingDialog(this@FindingTeamMembersFragment, "패키지 삭제?", 0)
+//                dialog.
+                dialog.show(activity?.supportFragmentManager!!, "Confirm")
+            }
+        })
+        val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {
+            override fun onClick() {
+                findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToUserProfileFragment())
+            }
+        })
         recruitAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
         wantingAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
         binding.apply {
@@ -42,8 +54,15 @@ class FindingTeamMembersFragment : Fragment() {
             iv1.setOnClickListener {
                 findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToWantingTeamFragment())
             }
+            iv2.setOnClickListener {
+                findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToWriteRecruitingFragment())
+            }
         }
 
         return binding.root
+    }
+
+    override fun onYesButtonClick(id: Int) {
+
     }
 }

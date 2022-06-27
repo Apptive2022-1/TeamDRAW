@@ -1,10 +1,8 @@
-package com.example.teamdraw.contest
+package com.example.teamdraw.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamdraw.data.database.ContestsEntity
 import com.example.teamdraw.databinding.ItemContestRvBinding
