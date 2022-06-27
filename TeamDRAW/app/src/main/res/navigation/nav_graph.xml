@@ -108,7 +108,11 @@
         android:id="@+id/teamListFragment"
         android:name="com.example.teamdraw.ui.fragments.TeamListFragment"
         android:label="fragment_teamlist"
-        tools:layout="@layout/fragment_teamlist" />
+        tools:layout="@layout/fragment_teamlist" >
+        <action
+            android:id="@+id/action_teamListFragment_to_chattingFragment"
+            app:destination="@id/chattingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chattingFragment"
         android:name="com.example.teamdraw.ui.fragments.ChattingFragment"

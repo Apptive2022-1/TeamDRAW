@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@drawable/dialog_round">
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Team"
+        app:layout_constraintBottom_toTopOf="@+id/textView30"
+        app:layout_constraintEnd_toStartOf="@+id/etv_input_teamName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="For"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cancel_makeTeam"
+        app:layout_constraintEnd_toStartOf="@+id/etv_input_For"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView29"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <EditText
+        android:id="@+id/etv_input_teamName"
+        android:layout_width="250dp"
+        android:paddingLeft="20dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/drawable127"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/textView29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView29"
+        app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+    <EditText
+        android:id="@+id/etv_input_For"
+        android:layout_width="250dp"
+        android:paddingLeft="20dp"
+        android:layout_height="40dp"
+        android:background="@drawable/drawable127"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/etv_input_teamName"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/etv_input_teamName"
+        app:layout_constraintTop_toTopOf="@id/textView30" />
+
+    <Button
+        android:id="@+id/btn_cancel_makeTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/frame_btn_selected2"
+        android:text="취소"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_createTeam"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <Button
+        android:id="@+id/btn_createTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/frame_btn_selected2"
+        android:text="팀 생성"
+        app:layout_constraintEnd_toEndOf="@+id/etv_input_For"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel_makeTeam"
+        app:layout_constraintTop_toTopOf="@+id/btn_cancel_makeTeam" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

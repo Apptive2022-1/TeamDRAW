@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@{chat.time}"
             android:textColor="#8C8C8C"
+            android:textSize="10sp"
             android:layout_marginEnd="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView28" />

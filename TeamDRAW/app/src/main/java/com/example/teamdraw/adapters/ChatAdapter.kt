@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teamdraw.databinding.ItemChatBinding
 import com.example.teamdraw.databinding.ItemChatLeftBinding
 import com.example.teamdraw.models.Chat
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +19,9 @@ import kotlinx.coroutines.withContext
 private val adapterScope = CoroutineScope(Dispatchers.Default)
 
 class ChatAdapter() : ListAdapter<Chat, RecyclerView.ViewHolder>(ChatDiffCallback()) {
-
-    fun setList(nlist: List<Chat>) {
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    fun setList(nlist: MutableList<Chat>) {
+        Log.d("size ", nlist.size.toString())
         adapterScope.launch {
             withContext(Dispatchers.Main) {
                 submitList(nlist)
@@ -39,7 +41,7 @@ class ChatAdapter() : ListAdapter<Chat, RecyclerView.ViewHolder>(ChatDiffCallbac
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).type) 0 else 1
+        return if (getItem(position).userId == auth.currentUser!!.uid) 0 else 1
     }
 
     class ChatViewHolder(val binding: ItemChatBinding) :

@@ -74,7 +74,7 @@ class InputInformationFragment : Fragment() {
                         userInfoViewModel.grade.value, userInfoViewModel.emailAuthenticated.value,
                         userInfoViewModel.departureList.value, userInfoViewModel.positionList.value,
                         userInfoViewModel.positionDetailList.value, userInfoViewModel.selfItroduce.value,
-                        userInfoViewModel.personalLink.value,
+                        userInfoViewModel.personalLink.value, userInfoViewModel.teamList.value
                     )
 
                     db.collection("Users").document(userId.toString())

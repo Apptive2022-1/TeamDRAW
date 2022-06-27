@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.hide()
                     bottomNavBarHide()
                 }
+                R.id.chattingFragment ->{
+                    supportActionBar?.hide()
+                    bottomNavBarHide()
+                }
                 else -> {
                     supportActionBar?.show()
                     bottomNavBarShow()
@@ -165,6 +169,11 @@ class MainActivity : AppCompatActivity() {
         }
         if(user?.personalLink != null){
             userInfoViewModel.updateValue(user?.personalLink.toString(), "PERSONALLINK")
+        }
+        if(user?.teamList != null){
+            for(value in user?.teamList){
+                userInfoViewModel.addList(value, "TEAMLIST")
+            }
         }
 
     }
