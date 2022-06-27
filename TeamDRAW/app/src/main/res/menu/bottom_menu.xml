@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_nav_finding_team_member"
         android:title="@string/bottom_menu_member" />
     <item
-        android:id="@+id/smallGroupRoomFragment"
+        android:id="@+id/teamListFragment"
         android:enabled="true"
         android:icon="@drawable/ic_nav_small_group_room"
         android:title="@string/bottom_menu_group"/>

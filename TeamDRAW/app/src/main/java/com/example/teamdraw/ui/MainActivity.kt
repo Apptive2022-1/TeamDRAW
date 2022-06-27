@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
         navHostController = navHostFragment.navController
 
-        //handleInitLogin() // 첫 가입 & 로그인인 경우 정보입력창으로 navigate
         getResultCode = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_FIRST_USER) { // 최초 로그인시에는 정보입력창으로 안내
                     navHostController.navigate(R.id.action_contestFragment_to_inputInformationFragment)
@@ -68,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                     bottomNavBarHide()
                 }
                 R.id.inputInformationFragment -> {
+                    supportActionBar?.hide()
+                    bottomNavBarHide()
+                }
+                R.id.chattingFragment ->{
                     supportActionBar?.hide()
                     bottomNavBarHide()
                 }
@@ -166,6 +169,11 @@ class MainActivity : AppCompatActivity() {
         }
         if(user?.personalLink != null){
             userInfoViewModel.updateValue(user?.personalLink.toString(), "PERSONALLINK")
+        }
+        if(user?.teamList != null){
+            for(value in user?.teamList){
+                userInfoViewModel.addList(value, "TEAMLIST")
+            }
         }
 
     }

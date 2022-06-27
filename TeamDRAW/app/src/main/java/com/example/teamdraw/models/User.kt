@@ -16,4 +16,5 @@ data class User(
     val positionDetailList : MutableList<String>? = null,
     val selfIntroduce:String? = null,
     val personalLink:String? = null,
+    val teamList : MutableList<String>? = null
 )

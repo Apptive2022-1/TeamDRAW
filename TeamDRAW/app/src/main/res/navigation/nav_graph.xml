@@ -19,11 +19,6 @@
 
     </fragment>
     <fragment
-        android:id="@+id/smallGroupRoomFragment"
-        android:name="com.example.teamdraw.ui.fragments.SmallGroupRoomFragment"
-        android:label="fragment_small_group_room"
-        tools:layout="@layout/fragment_small_group_room" />
-    <fragment
         android:id="@+id/findingTeamMembersFragment"
         android:name="com.example.teamdraw.ui.fragments.FindingTeamMembersFragment"
         android:label="fragment_finding_team_members"
@@ -49,6 +44,9 @@
         <action
             android:id="@+id/action_contestDetailFragment_to_findingTeamMembersFragment"
             app:destination="@id/findingTeamMembersFragment" />
+        <action
+            android:id="@+id/action_contestDetailFragment_to_teamListFragment"
+            app:destination="@id/teamListFragment" />
     </fragment>
 
     <fragment
@@ -104,6 +102,15 @@
         tools:layout="@layout/fragment_chatting_list" >
         <action
             android:id="@+id/action_chattingListFragment_to_chattingFragment"
+            app:destination="@id/chattingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamListFragment"
+        android:name="com.example.teamdraw.ui.fragments.TeamListFragment"
+        android:label="fragment_teamlist"
+        tools:layout="@layout/fragment_teamlist" >
+        <action
+            android:id="@+id/action_teamListFragment_to_chattingFragment"
             app:destination="@id/chattingFragment" />
     </fragment>
     <fragment

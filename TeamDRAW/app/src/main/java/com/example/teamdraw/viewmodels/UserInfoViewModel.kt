@@ -19,6 +19,7 @@ class UserInfoViewModel : ViewModel() {
     private val _positionDetailList = MutableLiveData<MutableList<String>>()
     private val _selfIntroduce = MutableLiveData<String>()
     private val _personalLink = MutableLiveData<String>()
+    private val _teamList = MutableLiveData<MutableList<String>>()
 
 
     val name: MutableLiveData<String>
@@ -62,12 +63,15 @@ class UserInfoViewModel : ViewModel() {
     val personalLink: MutableLiveData<String>
         get() = _personalLink
 
+    val teamList: MutableLiveData<MutableList<String>>
+        get() = _teamList
 
     init {
         _emailAuthenticated.value = "false"
         _departureList.value = mutableListOf()
         _positionList.value = mutableListOf()
         _positionDetailList.value = mutableListOf()
+        _teamList.value= mutableListOf()
     }
 
     fun updateValue(value: String, member: String) {
@@ -117,6 +121,9 @@ class UserInfoViewModel : ViewModel() {
             }
             "POSITION_DETAIL" ->{
                 _positionDetailList.value?.add(value)
+            }
+            "TEAMLIST" ->{
+                _teamList.value?.add(value)
             }
 
         }
