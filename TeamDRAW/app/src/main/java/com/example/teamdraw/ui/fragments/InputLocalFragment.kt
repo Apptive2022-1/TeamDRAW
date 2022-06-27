@@ -10,9 +10,9 @@ import androidx.fragment.app.activityViewModels
 import com.example.teamdraw.R
 import com.example.teamdraw.databinding.FragmentInputLocalBinding
 import com.example.teamdraw.viewmodels.UserInfoViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class InputLocalFragment : Fragment() {
-
     private val userInfoViewModel: UserInfoViewModel by activityViewModels()
     private lateinit var binding: FragmentInputLocalBinding
 

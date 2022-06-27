@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
         navHostController = navHostFragment.navController
 
-        //handleInitLogin() // 첫 가입 & 로그인인 경우 정보입력창으로 navigate
         getResultCode = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_FIRST_USER) { // 최초 로그인시에는 정보입력창으로 안내
                     navHostController.navigate(R.id.action_contestFragment_to_inputInformationFragment)

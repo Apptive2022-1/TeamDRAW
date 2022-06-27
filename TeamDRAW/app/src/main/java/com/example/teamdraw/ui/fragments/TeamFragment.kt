@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.teamdraw.R
 
+class TeamFragment : Fragment() {
 
-class SmallGroupRoomFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_small_group_room, container, false)
+        return inflater.inflate(R.layout.fragment_team, container, false)
     }
+
 
 }
