@@ -30,8 +30,9 @@ class FindingTeamMembersFragment : Fragment(), RecruitingDialogInterface {
 
         val recruitAdapter = RecruitRVAdapter(object : RecruitRVAdapter.ItemClickListener {
             override fun onClick() {
+
+
                 val dialog = RecruitingDialog(this@FindingTeamMembersFragment, "패키지 삭제?", 0)
-//                dialog.
                 dialog.show(activity?.supportFragmentManager!!, "Confirm")
             }
         })

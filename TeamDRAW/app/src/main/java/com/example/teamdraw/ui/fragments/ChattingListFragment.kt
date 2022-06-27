@@ -32,7 +32,7 @@ class ChattingListFragment : Fragment() {
             ChatList("최이경", "개발자", "감사합니다", "4월 27일")
         )
         val adapter = ChatListAdapter(ChatListListener {
-            findNavController().navigate(ChattingListFragmentDirections.actionChattingListFragmentToChattingFragment())
+            findNavController().navigate(ChattingListFragmentDirections.actionChattingListFragmentToOneToOneChat())
         })
         adapter.setList(chatList)
 
