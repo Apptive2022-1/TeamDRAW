@@ -21,7 +21,6 @@ private val adapterScope = CoroutineScope(Dispatchers.Default)
 class ChatAdapter() : ListAdapter<Chat, RecyclerView.ViewHolder>(ChatDiffCallback()) {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     fun setList(nlist: MutableList<Chat>) {
-        Log.d("size ", nlist.size.toString())
         adapterScope.launch {
             withContext(Dispatchers.Main) {
                 submitList(nlist)

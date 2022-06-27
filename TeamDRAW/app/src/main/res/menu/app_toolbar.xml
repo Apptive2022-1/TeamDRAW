@@ -9,13 +9,13 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/message"
+        android:id="@+id/chattingListFragment"
         android:title="메시지"
         android:icon="@drawable/ic_recieve_message"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/edit_profile"
+        android:id="@+id/myProfileFragment"
         android:title="내 프로필"
         android:icon="@drawable/ic_default_profile"
         app:showAsAction="ifRoom"

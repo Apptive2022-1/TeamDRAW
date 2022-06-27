@@ -2,20 +2,18 @@ package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.R
 import com.example.teamdraw.adapters.ChatAdapter
 import com.example.teamdraw.databinding.FragmentChattingBinding
+import com.example.teamdraw.databinding.FragmentOneToOneChatBinding
 import com.example.teamdraw.models.Chat
 import com.example.teamdraw.models.TeamChat
 import com.example.teamdraw.viewmodels.UserInfoViewModel
@@ -26,11 +24,11 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 
+class OneToOneChatFragment : Fragment() {
 
-class ChattingFragment : Fragment() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val userInfoViewModel: UserInfoViewModel by activityViewModels()
-    private lateinit var binding: FragmentChattingBinding
+    private lateinit var binding: FragmentOneToOneChatBinding
 
     private lateinit var adapter: ChatAdapter
     private var teamID: String? = null
@@ -38,48 +36,27 @@ class ChattingFragment : Fragment() {
     private var teamChat = mutableListOf<Chat>()
 
     lateinit var toolbar: Toolbar
-    lateinit var navigationView: NavigationView
-    lateinit var drawerLayout: DrawerLayout
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentChattingBinding.inflate(inflater, container, false)
+        binding = FragmentOneToOneChatBinding.inflate(inflater, container, false)
         adapter = ChatAdapter()
-        arguments?.let {
-            teamID = it.getString("teamID")
-            teamName = it.getString("teamName")
-        }
+
+//     teamID 부분 수정필요
+//        arguments?.let {
+//           teamID = it.getString("teamID")
+//           teamName = it.getString("teamName")
+//        }
+
         adapter.setList(initChattingList())
-        binding.chatRecyclerview.adapter = adapter
-        binding.chatRecyclerview.layoutManager =
+        binding.chatRecyclerview2.adapter = adapter
+        binding.chatRecyclerview2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        toolbar = binding.toolbar
-
-        navigationView = binding.navigationView
-        drawerLayout = binding.drawLayout
-
-        navigationView.setNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.item1 -> {}
-                R.id.item2 -> {}
-                R.id.item3 -> {}
-                R.id.item4 -> {}
-                R.id.item5 -> {}
-            }
-            return@setNavigationItemSelectedListener true
-        }
-
-        toolbar.setOnMenuItemClickListener { item ->
-            if (item.itemId == R.id.hamburger) {
-                drawerLayout.openDrawer(navigationView)
-            }
-            return@setOnMenuItemClickListener true
-        }
 
         return binding.root
     }
@@ -171,6 +148,4 @@ class ChattingFragment : Fragment() {
             }
         return teamChat
     }
-
-
 }

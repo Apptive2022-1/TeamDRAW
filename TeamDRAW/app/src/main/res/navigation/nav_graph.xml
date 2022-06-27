@@ -101,8 +101,8 @@
         android:label="fragment_chatting_list"
         tools:layout="@layout/fragment_chatting_list" >
         <action
-            android:id="@+id/action_chattingListFragment_to_chattingFragment"
-            app:destination="@id/chattingFragment" />
+            android:id="@+id/action_chattingListFragment_to_oneToOneChat"
+            app:destination="@id/oneToOneChat" />
     </fragment>
     <fragment
         android:id="@+id/teamListFragment"
@@ -118,4 +118,8 @@
         android:name="com.example.teamdraw.ui.fragments.ChattingFragment"
         android:label="fragment_chatting"
         tools:layout="@layout/fragment_chatting" />
+    <fragment
+        android:id="@+id/oneToOneChat"
+        android:name="com.example.teamdraw.ui.fragments.OneToOneChatFragment"
+        android:label="OneToOneChat" />
 </navigation>

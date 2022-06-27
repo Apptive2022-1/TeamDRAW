@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item1"
+        android:title="상호평가하기"/>
+
+    <item
+        android:id="@+id/item2"
+        android:title="팀 나가기"/>
+    <item
+        android:id="@+id/item3"
+        android:title="공지 확인하기"/>
+    <item
+        android:id="@+id/item4"
+        android:title="활동정보"/>
+    <item
+        android:id="@+id/item5"
+        android:title="자세히보기"/>
+</menu>
