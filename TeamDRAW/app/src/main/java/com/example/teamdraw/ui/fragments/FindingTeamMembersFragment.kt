@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.adapters.ChatAdapter
@@ -17,37 +19,46 @@ import com.example.teamdraw.models.Recruiting
 import com.example.teamdraw.models.User
 import com.example.teamdraw.ui.dialog.RecruitingDialog
 import com.example.teamdraw.ui.dialog.RecruitingDialogInterface
+import com.example.teamdraw.util.FragmentLocation
+import com.example.teamdraw.viewmodels.ContestsViewModel
+import com.example.teamdraw.viewmodels.FindingTeamViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class FindingTeamMembersFragment : Fragment(), RecruitingDialogInterface {
 
     private lateinit var binding: FragmentFindingTeamMembersBinding
     private lateinit var recruitAdapter: RecruitRVAdapter
+    private lateinit var wantingAdapter: WantingRVAdapter
+    private val viewModel: FindingTeamViewModel by viewModels()
     private var recruitingList = mutableListOf<Recruiting>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentFindingTeamMembersBinding.inflate(
             inflater,
             container,
             false
         )
 
+        binding.lifecycleOwner = this
+        readDatabase()
         recruitAdapter = RecruitRVAdapter(object : RecruitRVAdapter.ItemClickListener {
-            override fun onClick(n :Int) {
-                val dialog = RecruitingDialog(this@FindingTeamMembersFragment,recruitingList[n])
+            override fun onClick(n: Int) {
+                val dialog = RecruitingDialog(this@FindingTeamMembersFragment, recruitingList[n])
                 dialog.show(activity?.supportFragmentManager!!, "Confirm")
 
             }
         })
-        val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {
-            override fun onClick() {
-                findNavController().navigate(FindingTeamMembersFragmentDirections.actionFindingTeamMembersFragmentToUserProfileFragment())
-            }
-        })
+
         recruitAdapter.setList(recruitingList)
-        wantingAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
         binding.apply {
             with(recruitRv) {
                 adapter = recruitAdapter
@@ -68,20 +79,32 @@ class FindingTeamMembersFragment : Fragment(), RecruitingDialogInterface {
         return binding.root
     }
 
+    private fun readDatabase() {
+        wantingAdapter = WantingRVAdapter(FragmentLocation.Finding)
+        lifecycleScope.launch {
+            viewModel.readUsers.observe(viewLifecycleOwner) { uesrs ->
+                if (uesrs.isNotEmpty()) {
+                    wantingAdapter.setList(uesrs)
+                }
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         getRecruitingList()
 
     }
-    private fun getRecruitingList(){
+
+    private fun getRecruitingList() {
         recruitingList = mutableListOf()
         val db = Firebase.firestore
         val dbRef = db.collection("Recruiting")
         dbRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    for(doc in document){
+                    for (doc in document) {
                         val recruiting = doc.toObject<Recruiting>()
                         recruitingList.add(recruiting)
                     }

@@ -32,7 +32,7 @@
             android:id="@+id/vp_teamList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_makeTeam"
             app:layout_constraintEnd_toEndOf="parent"

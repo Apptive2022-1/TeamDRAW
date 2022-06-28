@@ -1,5 +1,7 @@
 package com.example.teamdraw.ui.fragments
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +30,14 @@ class ContestDetailFragment : Fragment() {
                 ContestDetailFragmentDirections
                     .actionContestDetailFragmentToFindingTeamMembersFragment()
             )
+        }
+
+        binding.heartBtn.setOnClickListener {
+            binding.heartBtn.setColorFilter(Color.parseColor("#AB78FF"), PorterDuff.Mode.SRC_IN)
+        }
+
+        binding.popUpBtn.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return binding.root

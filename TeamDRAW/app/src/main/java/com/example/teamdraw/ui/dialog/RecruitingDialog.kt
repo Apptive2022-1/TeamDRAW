@@ -75,7 +75,7 @@ class RecruitingDialog(
     }
 
     private fun initEnterTeamButton() {
-        if(recruiting.userID == auth.currentUser!!.uid){
+        if (recruiting.userID == auth.currentUser!!.uid) {
             binding.btnEnterTeam.isEnabled = false
         }
         binding.btnEnterTeam.setOnClickListener {
@@ -105,26 +105,37 @@ class RecruitingDialog(
                                             .update("one_to_one_ChatList", newList)
                                             .addOnSuccessListener {
 
-                                                val dbRef = db.collection("OneToOneChat").document(randomId)
+                                                val dbRef =
+                                                    db.collection("OneToOneChat").document(randomId)
                                                 dbRef.get().addOnSuccessListener { document ->
-                                                    if (document.exists()){
+                                                    if (document.exists()) {
                                                         Log.d("개인채팅 생성 실패", "실패")
                                                         dismiss()
-                                                    }
-                                                    else {
-                                                        db.collection("OneToOneChat").document(randomId)
-                                                            .set(OneToOneChat(randomId,
-                                                                mutableListOf(recruiting.userID, userId.toString()),
-                                                                mutableListOf()))
+                                                    } else {
+                                                        db.collection("OneToOneChat")
+                                                            .document(randomId)
+                                                            .set(
+                                                                OneToOneChat(
+                                                                    randomId,
+                                                                    mutableListOf(
+                                                                        recruiting.userID,
+                                                                        userId.toString()
+                                                                    ),
+                                                                    mutableListOf()
+                                                                )
+                                                            )
                                                             .addOnSuccessListener {
                                                                 findNavController().navigate(R.id.action_findingTeamMembersFragment_to_chattingListFragment)
                                                                 dismiss()
-                                                                Log.d("Team Chatting", "팀채팅 최초 생성 성공")
+                                                                Log.d(
+                                                                    "Team Chatting",
+                                                                    "팀채팅 최초 생성 성공"
+                                                                )
                                                             }
                                                     }
                                                 }
                                             }
-                                            .addOnFailureListener{
+                                            .addOnFailureListener {
                                                 dismiss()
                                             }
                                     }

@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/popUp_btn"
                 android:layout_marginStart="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="상세정보"
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -63,6 +64,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
                     android:text="@{contest.title}"
+                    android:textColor="#1B1B1B"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +197,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:background="@drawable/frame_layout_rounded_corner"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -204,10 +206,12 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/heart_btn"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginEnd="30dp"
                     android:background="#F4F4F4"
+                    app:tint = "@color/white"
                     android:src="@drawable/purple_heart"
                     app:layout_constraintBottom_toBottomOf="@id/frame_btn"
                     app:layout_constraintEnd_toStartOf="@id/frame_btn"
@@ -218,9 +222,12 @@
                     android:layout_width="250dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="100dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
                     android:background="@drawable/frame_layout_btn_gradient"
-                    android:text="팀원찾기"
+                    android:text="팀원 찾기"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

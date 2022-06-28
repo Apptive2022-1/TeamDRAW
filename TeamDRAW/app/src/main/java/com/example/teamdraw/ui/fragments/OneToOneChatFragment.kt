@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.adapters.ChatAdapter
 import com.example.teamdraw.databinding.FragmentOneToOneChatBinding
@@ -48,6 +49,10 @@ class OneToOneChatFragment : Fragment() {
         binding.chatRecyclerview2.adapter = adapter
         binding.chatRecyclerview2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        binding.popUpBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return binding.root
     }

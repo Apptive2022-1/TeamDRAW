@@ -1,10 +1,12 @@
 package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,7 @@ import com.example.teamdraw.R
 import com.example.teamdraw.adapters.ContestRVAdapter
 import com.example.teamdraw.databinding.FragmentContestBinding
 import com.example.teamdraw.viewmodels.ContestsViewModel
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -55,6 +58,26 @@ class ContestFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             sortSpinner.adapter = adapter
         }
+
+        binding.tabLayout.addOnTabSelectedListener(
+            object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    when (tab?.text) {
+                        "프로젝트" -> binding.contestRv.visibility = View.INVISIBLE
+                        else -> binding.contestRv.visibility = View.VISIBLE
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+
+                }
+            }
+        )
+        binding.tabLayout.setSelectedTabIndicatorColor(resources.getColor(R.color.ripple))
 
         return binding.root
     }

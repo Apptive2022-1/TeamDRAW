@@ -20,7 +20,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="팀 구성을 원하는 바디"
-            android:textSize="15sp"
+            android:textColor="#242424"
+            android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,8 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="팀 구인글"
+            android:textColor="#242424"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="@id/tv1"
             app:layout_constraintTop_toBottomOf="@id/wanting_rv1" />

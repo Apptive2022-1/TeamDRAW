@@ -27,4 +27,5 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDao(database:ContestsDatabase) = database.contestsDao()
+
 }
