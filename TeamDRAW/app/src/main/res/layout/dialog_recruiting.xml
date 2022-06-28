@@ -33,7 +33,6 @@
         app:layout_constraintTop_toTopOf="@+id/iv_profile"
         app:layout_goneMarginStart="10dp" />
 
-
     <TextView
         android:id="@+id/tv_recruiting_time"
         android:layout_width="wrap_content"
@@ -42,6 +41,21 @@
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
         app:layout_constraintStart_toStartOf="@+id/user_nickname_tv" />
+
+    <TextView
+        android:id="@+id/wanting_profile_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:background="@drawable/wanting_profile_tv"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="디자이너"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_nickname_tv"
+        app:layout_constraintStart_toEndOf="@+id/user_nickname_tv"
+        app:layout_constraintTop_toTopOf="@+id/user_nickname_tv" />
 
     <TextView
         android:id="@+id/tv_recruiting_title"

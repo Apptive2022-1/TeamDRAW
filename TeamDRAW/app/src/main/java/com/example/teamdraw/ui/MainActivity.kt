@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        
+
         // 액션바 관련 설정
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -51,26 +51,21 @@ class MainActivity : AppCompatActivity() {
 
         navHostController = navHostFragment.navController
 
-        getResultCode = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        getResultCode =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_FIRST_USER) { // 최초 로그인시에는 정보입력창으로 안내
                     navHostController.navigate(R.id.action_contestFragment_to_inputInformationFragment)
                 }
             }
         login() // 자동 로그인
 
+
         binding.bottomNavBar.setupWithNavController(navHostController)
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
             Log.d("dest : ", navHostController.graph.startDestDisplayName)
             when (destination.id) {
-                R.id.contestDetailFragment -> {
-                    supportActionBar?.hide()
-                    bottomNavBarHide()
-                }
-                R.id.inputInformationFragment -> {
-                    supportActionBar?.hide()
-                    bottomNavBarHide()
-                }
-                R.id.chattingFragment ->{
+                R.id.contestDetailFragment, R.id.inputInformationFragment, R.id.chattingFragment, R.id.writeRecruitingFragment,
+                R.id.oneToOneChat, R.id.userProfileFragment -> {
                     supportActionBar?.hide()
                     bottomNavBarHide()
                 }
@@ -122,61 +117,61 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateViewModel(user: User?) {
-        if(user?.name != null){
+        if (user?.name != null) {
             userInfoViewModel.updateValue(user?.name.toString(), "NAME")
         }
-        if(user?.nickname != null){
+        if (user?.nickname != null) {
             userInfoViewModel.updateValue(user?.nickname.toString(), "NICKNAME")
         }
-        if(user?.sex != null){
+        if (user?.sex != null) {
             userInfoViewModel.updateValue(user?.sex.toString(), "SEX")
         }
-        if(user?.univ != null){
+        if (user?.univ != null) {
             userInfoViewModel.updateValue(user?.univ.toString(), "UNIV")
         }
-        if(user?.univ_email != null){
+        if (user?.univ_email != null) {
             userInfoViewModel.updateValue(user?.univ_email.toString(), "UNIV_EMAIL")
         }
-        if(user?.major != null){
+        if (user?.major != null) {
             userInfoViewModel.updateValue(user?.major.toString(), "MAJOR")
         }
-        if(user?.grade != null){
+        if (user?.grade != null) {
             userInfoViewModel.updateValue(user?.grade.toString(), "GRADE")
         }
-        if(user?.local != null){
+        if (user?.local != null) {
             userInfoViewModel.updateValue(user?.local.toString(), "LOCAL")
         }
-        if(user?.emailAuthenticated != null){
+        if (user?.emailAuthenticated != null) {
             userInfoViewModel.updateValue(user?.emailAuthenticated.toString(), "AUTHENTICATE")
         }
-        if(user?.departureList != null){
-            for(value in user?.departureList){
+        if (user?.departureList != null) {
+            for (value in user?.departureList) {
                 userInfoViewModel.addList(value, "DEPARTURE")
             }
         }
-        if(user?.positionList != null){
-            for(value in user?.positionList){
+        if (user?.positionList != null) {
+            for (value in user?.positionList) {
                 userInfoViewModel.addList(value, "POSITION")
             }
         }
-        if(user?.positionDetailList != null){
-            for(value in user?.positionDetailList){
+        if (user?.positionDetailList != null) {
+            for (value in user?.positionDetailList) {
                 userInfoViewModel.addList(value, "POSITION_DETAIL")
             }
         }
-        if(user?.selfIntroduce != null){
+        if (user?.selfIntroduce != null) {
             userInfoViewModel.updateValue(user?.selfIntroduce.toString(), "SELFINTRODUCE")
         }
-        if(user?.personalLink != null){
+        if (user?.personalLink != null) {
             userInfoViewModel.updateValue(user?.personalLink.toString(), "PERSONALLINK")
         }
-        if(user?.teamList != null){
-            for(value in user?.teamList){
+        if (user?.teamList != null) {
+            for (value in user?.teamList) {
                 userInfoViewModel.addList(value, "TEAMLIST")
             }
         }
-        if(user?.one_to_one_ChatList != null){
-            for(value in user?.one_to_one_ChatList){
+        if (user?.one_to_one_ChatList != null) {
+            for (value in user?.one_to_one_ChatList) {
                 userInfoViewModel.addList(value, "ONETOONE")
             }
         }
@@ -184,18 +179,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.app_toolbar,menu)
+        menuInflater.inflate(R.menu.app_toolbar, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.myProfileFragment ->{
+        R.id.myProfileFragment -> {
             Log.d("toolbar : ", "profile")
             navHostController.navigate(R.id.myProfileFragment)
             supportActionBar?.hide()
             true
         }
-        R.id.chattingListFragment ->{
+        R.id.chattingListFragment -> {
             navHostController.navigate(R.id.chattingListFragment)
             supportActionBar?.hide()
             true

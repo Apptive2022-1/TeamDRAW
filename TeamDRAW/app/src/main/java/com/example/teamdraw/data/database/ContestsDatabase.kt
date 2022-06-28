@@ -6,11 +6,17 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 
 @Database(
-    entities = [ContestsEntity::class],
+    entities = [ContestsEntity::class, UserEntity::class],
     version = 1,
     exportSchema = false
 )
-@TypeConverters(ContestTypeConverter::class)
+@TypeConverters(
+    value = [
+        ContestTypeConverter::class,
+        UserTypeConverter::class,
+        StringListTypeConverter::class
+    ]
+)
 abstract class ContestsDatabase : RoomDatabase() {
     abstract fun contestsDao(): ContestsDao
 }

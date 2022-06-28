@@ -64,7 +64,7 @@
         android:hint="제목"
         android:inputType="text"
         android:paddingLeft="10dp"
-        android:textSize="15sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraint_toolbar" />
@@ -82,7 +82,7 @@
         android:lines="20"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etv_title" />
