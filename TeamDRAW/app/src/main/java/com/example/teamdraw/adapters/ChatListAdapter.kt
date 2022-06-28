@@ -1,16 +1,24 @@
 package com.example.teamdraw.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamdraw.databinding.ItemChatListBinding
 import com.example.teamdraw.models.ChatList
+import com.example.teamdraw.models.OneToOneChat
+import com.example.teamdraw.models.TeamChat
+import com.example.teamdraw.models.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
-class ChatListAdapter(private val clickListener: ChatListListener) : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder>() {
+class ChatListAdapter() : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder>() {
+    var clickListener: ChatListListener = ChatListListener {  }
+    private var list = mutableListOf<OneToOneChat>()
 
-    private var list = listOf<ChatList>()
-
-    fun setList(nlist: List<ChatList>) {
+    fun setList(nlist: MutableList<OneToOneChat>) {
         list = nlist
         notifyDataSetChanged()
     }
@@ -27,11 +35,41 @@ class ChatListAdapter(private val clickListener: ChatListListener) : RecyclerVie
 
     class ChatListViewHolder(val binding: ItemChatListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-        fun bind(chatList: ChatList, clickListener: ChatListListener) {
-            binding.chatList = chatList
-            binding.clickListener = clickListener
-            binding.executePendingBindings()
+        fun bind(chat: OneToOneChat, clickListener: ChatListListener) {
+
+            val db = Firebase.firestore
+            val dbRef = db.collection("OneToOneChat").document(chat.chatId!!)
+            dbRef.get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) { // document 가 존재하는 경우
+                        var chatList = ChatList("","","","")
+                        val chat = document.toObject<OneToOneChat>()
+                        for(h in chat!!.host){
+                            if(h != auth.currentUser?.uid.toString()){
+                                Log.d("h ", h)
+                                val dbRef = db.collection("Users").document(h)
+                                dbRef.get().addOnSuccessListener {  document ->
+                                    if(document.exists()){
+                                        chatList.name = document.toObject<User>()!!.nickname!!
+                                        if(chat!!.chatList.isNotEmpty()) {
+                                            val lastChat = chat!!.chatList.last()
+                                            chatList.message = lastChat.message
+                                            chatList.time = lastChat.time
+                                        }
+                                        binding.chatList = chatList
+                                        binding.clickListener = clickListener
+                                        binding.executePendingBindings()
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    else {
+                    }
+                }
         }
 
         companion object {
@@ -42,6 +80,7 @@ class ChatListAdapter(private val clickListener: ChatListListener) : RecyclerVie
             }
         }
     }
+
 }
 
 class ChatListListener(val clickListener: () -> Unit) {

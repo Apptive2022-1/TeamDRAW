@@ -38,6 +38,7 @@ class FindingTeamMembersFragment : Fragment(), RecruitingDialogInterface {
             override fun onClick(n :Int) {
                 val dialog = RecruitingDialog(this@FindingTeamMembersFragment,recruitingList[n])
                 dialog.show(activity?.supportFragmentManager!!, "Confirm")
+
             }
         })
         val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {

@@ -192,5 +192,10 @@ class LoginActivity : AppCompatActivity() {
                 userInfoViewModel.addList(value, "TEAMLIST")
             }
         }
+        if(user?.one_to_one_ChatList != null){
+            for(value in user?.one_to_one_ChatList){
+                userInfoViewModel.addList(value, "ONETOONE")
+            }
+        }
     }
 }

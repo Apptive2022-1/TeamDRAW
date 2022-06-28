@@ -1,8 +1,8 @@
 package com.example.teamdraw.models
 
 data class ChatList(
-    val name: String,
+    var name: String,
     val part: String,
-    val message: String,
-    val time: String
+    var message: String,
+    var time: String
 )

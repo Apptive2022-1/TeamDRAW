@@ -2,22 +2,18 @@ package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.teamdraw.R
 import com.example.teamdraw.adapters.ChatAdapter
-import com.example.teamdraw.databinding.FragmentChattingBinding
 import com.example.teamdraw.databinding.FragmentOneToOneChatBinding
 import com.example.teamdraw.models.Chat
+import com.example.teamdraw.models.OneToOneChat
 import com.example.teamdraw.models.TeamChat
 import com.example.teamdraw.viewmodels.UserInfoViewModel
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -31,11 +27,8 @@ class OneToOneChatFragment : Fragment() {
     private lateinit var binding: FragmentOneToOneChatBinding
 
     private lateinit var adapter: ChatAdapter
-    private var teamID: String? = null
-    private var teamName: String? = null
-    private var teamChat = mutableListOf<Chat>()
-
-    lateinit var toolbar: Toolbar
+    private var onetooneChatID: String? = null
+    private var onetooneChat = mutableListOf<Chat>()
 
 
     override fun onCreateView(
@@ -47,11 +40,9 @@ class OneToOneChatFragment : Fragment() {
         binding = FragmentOneToOneChatBinding.inflate(inflater, container, false)
         adapter = ChatAdapter()
 
-//     teamID 부분 수정필요
-//        arguments?.let {
-//           teamID = it.getString("teamID")
-//           teamName = it.getString("teamName")
-//        }
+        arguments?.let {
+            onetooneChatID = it.getString("onetooneChatID")
+        }
 
         adapter.setList(initChattingList())
         binding.chatRecyclerview2.adapter = adapter
@@ -66,7 +57,6 @@ class OneToOneChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sendMessageButton()
         observeChattingLog()
-        toolbar.title = teamName
     }
 
     private fun sendMessageButton() {
@@ -76,15 +66,16 @@ class OneToOneChatFragment : Fragment() {
                     binding.etvInputMessage.text.toString(), getTime(), auth.currentUser!!.uid,
                     userInfoViewModel.nickname.value.toString()
                 )
-                teamChat.add(chatlog)
+                onetooneChat.add(chatlog)
                 val db = Firebase.firestore
-                val dbRef = db.collection("TeamChat").document(teamID!!)
+                val dbRef = db.collection("OneToOneChat").document(onetooneChatID!!)
                 dbRef.get()
                     .addOnSuccessListener { document ->
                         if (document.exists()) { // document 가 존재하는 경우
-                            db.collection("TeamChat").document(teamID!!)
-                                .update("chatList", teamChat)
+                            db.collection("OneToOneChat").document(onetooneChatID!!)
+                                .update("chatList", onetooneChat)
                                 .addOnSuccessListener {
+                                    Log.d("챝잉전송", "완료")
                                     binding.etvInputMessage.text.clear()
 
                                 }
@@ -106,18 +97,16 @@ class OneToOneChatFragment : Fragment() {
 
     private fun observeChattingLog() {
         val db = Firebase.firestore
-        Log.d("teamid", teamID.toString())
-        val dbRef = db.collection("TeamChat").document(teamID.toString())
+        Log.d("onetooneChat 변경감지", onetooneChatID.toString())
+        val dbRef = db.collection("OneToOneChat").document(onetooneChatID!!)
         dbRef.addSnapshotListener { snapshot, e ->
             if (e != null) {
                 Log.w("error", "Listen failed.", e)
                 return@addSnapshotListener
             }
-
             if (snapshot != null && snapshot.exists()) {
-                Log.d("changed chat ", snapshot!!.toObject<TeamChat>()!!.chatList.toString())
-                teamChat = snapshot!!.toObject<TeamChat>()!!.chatList
-                adapter.setList(teamChat)
+                onetooneChat = snapshot!!.toObject<OneToOneChat>()!!.chatList
+                adapter.setList(onetooneChat)
                 adapter.notifyDataSetChanged()
             }
         }
@@ -125,27 +114,24 @@ class OneToOneChatFragment : Fragment() {
 
     private fun initChattingList(): MutableList<Chat> {
         val db = Firebase.firestore
-        Log.d("teamid", teamID.toString())
-        val dbRef = db.collection("TeamChat").document(teamID.toString())
+        val dbRef = db.collection("OneToOneChat").document(onetooneChatID.toString())
         dbRef.get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    teamChat = document.toObject<TeamChat>()!!.chatList
-                    adapter.setList(teamChat)
+                    onetooneChat = document.toObject<OneToOneChat>()!!.chatList
+                    adapter.setList(onetooneChat)
                     adapter.notifyDataSetChanged()
                     Log.d("data ", document.toObject<TeamChat>()!!.chatList.toString())
                 } else {
-                    Log.d("Team Chatting", "팀채팅 최초 생성")
-                    db.collection("TeamChat").document(teamID!!)
-                        .set(TeamChat(teamID!!, mutableListOf<Chat>()))
-                        .addOnSuccessListener {
-                            Log.d("Team Chatting", "팀채팅 최초 생성 성공")
-                        }
+                    Log.d("OnetoOne Chatting", "최초 생성")
                 }
+
             }
             .addOnFailureListener { exception ->
                 Log.d("db get", "get failed with ", exception)
             }
-        return teamChat
+        return onetooneChat
     }
+
+
 }

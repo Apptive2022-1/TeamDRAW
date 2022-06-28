@@ -1,46 +1,83 @@
 package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.teamdraw.R
 import com.example.teamdraw.adapters.ChatListAdapter
 import com.example.teamdraw.adapters.ChatListListener
 import com.example.teamdraw.databinding.FragmentChattingListBinding
 import com.example.teamdraw.models.ChatList
+import com.example.teamdraw.models.OneToOneChat
+import com.example.teamdraw.viewmodels.UserInfoViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 
 class ChattingListFragment : Fragment() {
 
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val userInfoViewModel: UserInfoViewModel by activityViewModels()
     private lateinit var binding: FragmentChattingListBinding
-
+    private lateinit var adapter : ChatListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChattingListBinding.inflate(inflater, container, false)
 
-        val chatList = listOf<ChatList>(
-            ChatList("신성현", "개발자", "넵 감사합니다!", "오후 12:40"),
-            ChatList("정수현", "개발자", "내일까지 보내주세요", "오전 8:30"),
-            ChatList("김재민", "디자이너", "네", "어제"),
-            ChatList("주다온", "기획자", "알겠습니다", "6월 8일"),
-            ChatList("이주빈", "디자이너", "아.. 네", "5월 25일"),
-            ChatList("최이경", "개발자", "감사합니다", "4월 27일")
-        )
-        val adapter = ChatListAdapter(ChatListListener {
-            findNavController().navigate(ChattingListFragmentDirections.actionChattingListFragmentToOneToOneChat())
-        })
-        adapter.setList(chatList)
+        adapter = ChatListAdapter()
+        adapter.clickListener = ChatListListener {
+            Log.d("te ", "qfqfqwf")
+        }
+        adapter.setList(mutableListOf())
 
         binding.chatListRecyclerview.adapter = adapter
         binding.chatListRecyclerview.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+    }
+
+    private fun initAdapter() {
+        var chatList = mutableListOf<OneToOneChat>()
+        val one_to_one_chatList = userInfoViewModel.one_to_one_ChatList.value
+        if(one_to_one_chatList!!.size > 0){
+            for(chatId in one_to_one_chatList!!){
+                val db = Firebase.firestore
+                val dbRef = db.collection("OneToOneChat").document(chatId)
+                dbRef.get()
+                    .addOnSuccessListener { document ->
+                        if (document.exists()) { // document 가 존재하는 경우
+                            val chat = document.toObject<OneToOneChat>()
+                            chatList.add(chat!!)
+                            adapter.setList(chatList)
+                            adapter.clickListener = ChatListListener {
+                                var bundle = Bundle()
+                                bundle.putString("onetooneChatID",chatId)
+                                findNavController().navigate(R.id.action_chattingListFragment_to_oneToOneChat, bundle)
+                            }
+                        }
+                        else {
+                        }
+                    }
+
+            }
+        }
     }
 
 }
