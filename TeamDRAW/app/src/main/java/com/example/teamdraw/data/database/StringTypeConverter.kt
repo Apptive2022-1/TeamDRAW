@@ -9,12 +9,13 @@ class StringListTypeConverter() {
     var gson = Gson()
 
     @TypeConverter
-    fun listToJson(value: List<String>): String? {
-        return gson.toJson(value)
+    fun listToJson(value: List<String>?): String? {
+        return if (value != null)
+            gson.toJson(value) else null
     }
 
     @TypeConverter
-    fun jsonToList(value: String): List<String> {
-        return gson.fromJson(value, Array<String>::class.java).toList()
+    fun jsonToList(value: String?): List<String>? {
+        return if(value != null) gson.fromJson(value, Array<String>::class.java).toList() else listOf("")
     }
 }

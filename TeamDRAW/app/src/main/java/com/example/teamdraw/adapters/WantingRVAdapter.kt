@@ -3,13 +3,16 @@ package com.example.teamdraw.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teamdraw.data.database.UserEntity
 import com.example.teamdraw.databinding.ItemWantingBinding
+import com.example.teamdraw.models.User
+import com.example.teamdraw.util.FragmentLocation
 
-class WantingRVAdapter(var mItemClickListener: ItemClickListener) : RecyclerView.Adapter<WantingRVAdapter.WantingRVViewHolder>() {
+class WantingRVAdapter(val location: FragmentLocation) : RecyclerView.Adapter<WantingRVAdapter.WantingRVViewHolder>() {
 
-    private var list = listOf<Int>()
+    private var list = listOf<UserEntity>()
 
-    fun setList(nlist: List<Int>) {
+    fun setList(nlist: List<UserEntity>) {
         list = nlist
         notifyDataSetChanged()
     }
@@ -17,37 +20,31 @@ class WantingRVAdapter(var mItemClickListener: ItemClickListener) : RecyclerView
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): WantingRVViewHolder = WantingRVViewHolder.from(parent, mItemClickListener)
+    ): WantingRVViewHolder = WantingRVViewHolder.from(parent)
 
     override fun onBindViewHolder(
         holder: WantingRVViewHolder,
         position: Int
     ) {
-        holder.bind(list[position])
+        holder.bind(list[position].user, location)
     }
 
     override fun getItemCount(): Int = list.size
 
-    class WantingRVViewHolder(val binding: ItemWantingBinding, private val mItemClickListener: ItemClickListener) :
+    class WantingRVViewHolder(val binding: ItemWantingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
-            fun from(parent: ViewGroup, mItemClickListener: ItemClickListener): WantingRVViewHolder {
+            fun from(parent: ViewGroup): WantingRVViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemWantingBinding.inflate(layoutInflater, parent, false)
-                return WantingRVViewHolder(binding, mItemClickListener)
+                return WantingRVViewHolder(binding)
             }
         }
 
-        init {
-            itemView.setOnClickListener { mItemClickListener.onClick() }
+        fun bind(user: User, location: FragmentLocation) {
+            binding.user = user
+            binding.location = location
+            binding.executePendingBindings()
         }
-
-        fun bind(n: Int) {
-
-        }
-    }
-
-    interface ItemClickListener {
-        fun onClick()
     }
 }

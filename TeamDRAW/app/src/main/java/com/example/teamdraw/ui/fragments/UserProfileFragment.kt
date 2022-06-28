@@ -1,11 +1,13 @@
 package com.example.teamdraw.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.teamdraw.R
 import com.example.teamdraw.databinding.FragmentUserProfileBinding
 import com.google.android.material.tabs.TabLayout
@@ -13,6 +15,7 @@ import com.google.android.material.tabs.TabLayout
 class UserProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentUserProfileBinding
+    private val args by navArgs<UserProfileFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +26,8 @@ class UserProfileFragment : Fragment() {
         binding.popUpBtn.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.user = args.user
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {

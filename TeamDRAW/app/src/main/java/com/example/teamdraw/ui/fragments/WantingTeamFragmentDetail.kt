@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,9 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.R
 import com.example.teamdraw.adapters.WantingRVAdapter
 import com.example.teamdraw.databinding.FragmentWantingTeamDetailBinding
+import com.example.teamdraw.util.FragmentLocation
+import com.example.teamdraw.viewmodels.FindingTeamViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class WantingTeamFragmentDetail : Fragment() {
 
+    private lateinit var wantingAdapter: WantingRVAdapter
+    private val viewModel: FindingTeamViewModel by viewModels()
     private val args by navArgs<WantingTeamFragmentDetailArgs>()
     lateinit var binding: FragmentWantingTeamDetailBinding
 
@@ -28,13 +37,8 @@ class WantingTeamFragmentDetail : Fragment() {
         binding = FragmentWantingTeamDetailBinding.inflate(inflater, container, false)
 
         val filter = args.filter
-        val wantingAdapter = WantingRVAdapter(object : WantingRVAdapter.ItemClickListener {
-            override fun onClick() {
-                findNavController().navigate(WantingTeamFragmentDetailDirections.actionWantingTeamFragmentDetailToUserProfileFragment())
-            }
-        })
 
-        wantingAdapter.setList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15))
+        readDatabase()
 
         binding.wantingRv.adapter = wantingAdapter
         binding.wantingRv.layoutManager = GridLayoutManager(context, 3)
@@ -59,4 +63,14 @@ class WantingTeamFragmentDetail : Fragment() {
         return binding.root
     }
 
+    private fun readDatabase() {
+        wantingAdapter = WantingRVAdapter(FragmentLocation.WantingDetail)
+        lifecycleScope.launch {
+            viewModel.readUsers.observe(viewLifecycleOwner) { uesrs ->
+                if (uesrs.isNotEmpty()) {
+                    wantingAdapter.setList(uesrs)
+                }
+            }
+        }
+    }
 }

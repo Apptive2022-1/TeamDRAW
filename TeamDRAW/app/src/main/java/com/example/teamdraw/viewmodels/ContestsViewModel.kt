@@ -21,6 +21,7 @@ class ContestsViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
     init {
         insertContest()
+        createUsers()
     }
 
     val readRecipes: LiveData<List<ContestsEntity>> = repository.local.readContests().asLiveData()
@@ -85,10 +86,11 @@ class ContestsViewModel @Inject constructor(
         )
 
         val userList = listOf<User>(user1, user2, user3, user4, user5, user6, user7)
+        insertUsers(userList)
 
     }
 
-    suspend fun insertUsers(userList: List<User>) {
+    private fun insertUsers(userList: List<User>) {
         viewModelScope.launch {
             repository.local.deleteUser()
             userList.forEach {

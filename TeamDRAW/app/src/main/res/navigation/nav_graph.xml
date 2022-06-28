@@ -92,7 +92,11 @@
         android:id="@+id/userProfileFragment"
         android:name="com.example.teamdraw.ui.fragments.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <argument
+            android:name="user"
+            app:argType="com.example.teamdraw.models.User" />
+    </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.teamdraw.ui.fragments.MyProfileFragment"
