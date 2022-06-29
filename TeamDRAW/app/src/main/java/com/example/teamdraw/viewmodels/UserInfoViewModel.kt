@@ -28,7 +28,6 @@ class UserInfoViewModel : ViewModel() {
     private val _skillL = MutableLiveData<String>()
 
 
-
     val name: MutableLiveData<String>
         get() = _name
 
@@ -136,6 +135,15 @@ class UserInfoViewModel : ViewModel() {
             "PERSONALLINK"->{
                 _personalLink.value = value
             }
+            "SkILL_H" -> {
+                _skillH.value = value
+            }
+            "SKILL_M" -> {
+                _skillM.value = value
+            }
+            "SKILL_L" -> {
+                _skillL.value = value
+            }
         }
     }
     fun addList(value:String, member : String){
@@ -155,7 +163,12 @@ class UserInfoViewModel : ViewModel() {
             "ONETOONE" ->{
                 _one_to_one_ChatList.value?.add(value)
             }
-
+            "QUESTION" ->{
+                _questionList.value?.add(value)
+            }
+            "SKILL_LIST" -> {
+                _skillList.value?.add(value)
+            }
         }
     }
     fun removeList(value:String, member : String){
