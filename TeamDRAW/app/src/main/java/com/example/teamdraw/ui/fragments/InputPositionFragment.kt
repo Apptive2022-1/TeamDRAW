@@ -25,6 +25,8 @@ class InputPositionFragment : Fragment(), View.OnClickListener{
         binding.user = userInfoViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        Log.d("##12","$")
+
         return binding.root
     }
 

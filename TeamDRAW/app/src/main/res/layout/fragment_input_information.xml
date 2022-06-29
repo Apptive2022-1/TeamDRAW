@@ -14,14 +14,14 @@
         tools:context=".ui.fragments.InputInformationFragment">
 
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageButton
             android:id="@+id/btn_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/ic_backbutton"
+            android:background="@drawable/ic_left"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

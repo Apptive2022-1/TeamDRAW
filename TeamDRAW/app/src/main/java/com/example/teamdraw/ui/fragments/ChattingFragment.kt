@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -37,7 +38,7 @@ class ChattingFragment : Fragment() {
     private var teamName: String? = null
     private var teamChat = mutableListOf<Chat>()
 
-    lateinit var toolbar: Toolbar
+
     lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
 
@@ -58,8 +59,6 @@ class ChattingFragment : Fragment() {
         binding.chatRecyclerview.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        toolbar = binding.toolbar
-
         navigationView = binding.navigationView
         drawerLayout = binding.drawLayout
 
@@ -74,11 +73,13 @@ class ChattingFragment : Fragment() {
             return@setNavigationItemSelectedListener true
         }
 
-        toolbar.setOnMenuItemClickListener { item ->
-            if (item.itemId == R.id.hamburger) {
-                drawerLayout.openDrawer(navigationView)
-            }
-            return@setOnMenuItemClickListener true
+
+        binding.hamburgerBtn.setOnClickListener {
+            drawerLayout.openDrawer(navigationView)
+        }
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return binding.root
@@ -89,7 +90,7 @@ class ChattingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sendMessageButton()
         observeChattingLog()
-        toolbar.title = teamName
+        binding.title.text = teamName
     }
 
     private fun sendMessageButton() {
