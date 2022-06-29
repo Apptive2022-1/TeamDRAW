@@ -185,16 +185,6 @@ class MainActivity : AppCompatActivity() {
                 userInfoViewModel.addList(value, "SKILL_LIST")
             }
         }
-        if(user?.skillH != null){
-            userInfoViewModel.updateValue(user?.skillH.toString(), "SkILL_H")
-        }
-        if(user?.skillL != null){
-            userInfoViewModel.updateValue(user?.skillL.toString(), "SkILL_L")
-        }
-        if(user?.skillM != null){
-            userInfoViewModel.updateValue(user?.skillM.toString(), "SkILL_M")
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -23,9 +23,7 @@ class UserInfoViewModel : ViewModel() {
     private val _one_to_one_ChatList = MutableLiveData<MutableList<String>>()
     private val _questionList = MutableLiveData<MutableList<String>>()
     private val _skillList = MutableLiveData<MutableList<String>>()
-    private val _skillH = MutableLiveData<String>()
-    private val _skillM = MutableLiveData<String>()
-    private val _skillL = MutableLiveData<String>()
+
 
 
     val name: MutableLiveData<String>
@@ -81,14 +79,6 @@ class UserInfoViewModel : ViewModel() {
     val skillList: MutableLiveData<MutableList<String>>
         get() = _skillList
 
-    val skillH: MutableLiveData<String>
-        get() = _skillH
-
-    val skillM: MutableLiveData<String>
-        get() = _skillM
-
-    val skillL: MutableLiveData<String>
-        get() = _skillL
 
 
     init {
@@ -98,6 +88,8 @@ class UserInfoViewModel : ViewModel() {
         _positionDetailList.value = mutableListOf()
         _teamList.value= mutableListOf()
         _one_to_one_ChatList.value = mutableListOf()
+        _questionList.value = mutableListOf()
+        _skillList.value = mutableListOf()
     }
 
     fun updateValue(value: String, member: String) {
@@ -134,15 +126,6 @@ class UserInfoViewModel : ViewModel() {
             }
             "PERSONALLINK"->{
                 _personalLink.value = value
-            }
-            "SkILL_H" -> {
-                _skillH.value = value
-            }
-            "SKILL_M" -> {
-                _skillM.value = value
-            }
-            "SKILL_L" -> {
-                _skillL.value = value
             }
         }
     }

@@ -26,7 +26,4 @@ data class User(
     val one_to_one_ChatList : @RawValue MutableList<String>? = null,
     val questionList: MutableList<String>?  = null,
     val skillList: MutableList<String>? = null,
-    val skillH: String? = null,
-    val skillM: String? = null,
-    val skillL: String? = null,
 ): Parcelable
