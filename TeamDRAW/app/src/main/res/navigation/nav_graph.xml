@@ -135,6 +135,9 @@
         <action
             android:id="@+id/action_chattingFragment_to_memberEvaluateFragment"
             app:destination="@id/memberEvaluateFragment" />
+        <action
+            android:id="@+id/action_chattingFragment_to_chattingListFragment"
+            app:destination="@id/chattingListFragment" />
     </fragment>
     <fragment
         android:id="@+id/oneToOneChatFragment"

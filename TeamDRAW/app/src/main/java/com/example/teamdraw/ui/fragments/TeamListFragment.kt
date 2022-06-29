@@ -15,11 +15,13 @@ import com.example.teamdraw.R
 import com.example.teamdraw.adapters.TeamListViewPagerAdapter
 import com.example.teamdraw.databinding.FragmentTeamlistBinding
 import com.example.teamdraw.models.Team
+import com.example.teamdraw.models.User
 
 import com.example.teamdraw.ui.dialog.MakeTeamDialog
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 
@@ -123,19 +125,25 @@ class TeamListFragment : Fragment() {
 
     private fun initTeamListViewPager(){
         val teamFragmentList = arrayListOf<Fragment>()
-        val teamList = userInfoViewModel.teamList.value
-        Log.d("test", teamList!!.size.toString())
-        if (teamList.size != 0) {
-            for (teamId in teamList){
-                teamFragmentList.add(TeamFragment.newInstance(teamId))
+        val db = Firebase.firestore
+        val dbRef = db.collection("Users").document(auth.currentUser?.uid.toString())
+        dbRef.get().addOnSuccessListener { document->
+            if(document.exists()){
+                val teamList = document.toObject<User>()!!.teamList
+                userInfoViewModel.teamList.value = teamList
+                Log.d("test", teamList!!.size.toString())
+                if (teamList.size != 0) {
+                    for (teamId in teamList){
+                        teamFragmentList.add(TeamFragment.newInstance(teamId))
+                    }
+                }
+                else {
+                    teamFragmentList.add(EmptyTeamListFragment())
+                }
+                val vpAdapter = TeamListViewPagerAdapter(teamFragmentList,this)
+                binding.vpTeamList.adapter = vpAdapter
             }
-
         }
-        else {
-            teamFragmentList.add(EmptyTeamListFragment())
-        }
-        val vpAdapter = TeamListViewPagerAdapter(teamFragmentList,this)
-        binding.vpTeamList.adapter = vpAdapter
     }
 
 

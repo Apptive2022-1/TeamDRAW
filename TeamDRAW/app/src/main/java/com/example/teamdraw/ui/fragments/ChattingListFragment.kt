@@ -29,6 +29,8 @@ class ChattingListFragment : Fragment() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var binding: FragmentChattingListBinding
     private lateinit var adapter : ChatListAdapter
+    private var invited : String? = null
+    private var teamID : String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +46,11 @@ class ChattingListFragment : Fragment() {
         binding.chatListRecyclerview.adapter = adapter
         binding.chatListRecyclerview.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        arguments?.let {
+            invited = it.getString("Invite")
+            teamID = it.getString("teamID")
+        }
 
         return binding.root
     }
@@ -61,26 +68,31 @@ class ChattingListFragment : Fragment() {
             .addOnSuccessListener { document ->
                 if (document.exists()) { // document 가 존재하는 경우
                     val one_to_one_chatList = document.toObject<User>()!!.one_to_one_ChatList
-                    if(one_to_one_chatList!!.size > 0){
-                        for(chatId in one_to_one_chatList!!){
-                            val db = Firebase.firestore
-                            val dbRef = db.collection("OneToOneChat").document(chatId)
-                            dbRef.get()
-                                .addOnSuccessListener { document ->
-                                    if (document.exists()) { // document 가 존재하는 경우
-                                        val chat = document.toObject<OneToOneChat>()
-                                        chatList.add(chat!!)
-                                        adapter.setList(chatList)
-                                        adapter.clickListener = ChatListListener {
-                                            var bundle = Bundle()
-                                            bundle.putString("onetooneChatID",chatId)
-                                            findNavController().navigate(R.id.action_chattingListFragment_to_oneToOneChat, bundle)
+                    if (one_to_one_chatList != null) {
+                        if(one_to_one_chatList.size > 0){
+                            for(chatId in one_to_one_chatList!!){
+                                val db = Firebase.firestore
+                                val dbRef = db.collection("OneToOneChat").document(chatId)
+                                dbRef.get()
+                                    .addOnSuccessListener { document ->
+                                        if (document.exists()) { // document 가 존재하는 경우
+                                            val chat = document.toObject<OneToOneChat>()
+                                            chatList.add(chat!!)
+                                            adapter.setList(chatList)
+                                            adapter.clickListener = ChatListListener {
+                                                var bundle = Bundle()
+                                                bundle.putString("onetooneChatID",chatId)
+                                                if(invited != null){
+                                                    bundle.putString("Invite", invited)
+                                                    bundle.putString("teamID", teamID)
+                                                }
+                                                findNavController().navigate(R.id.action_chattingListFragment_to_oneToOneChat, bundle)
+                                            }
+                                        } else {
                                         }
                                     }
-                                    else {
-                                    }
-                                }
 
+                            }
                         }
                     }
                 }

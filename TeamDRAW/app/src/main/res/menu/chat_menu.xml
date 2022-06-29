@@ -9,6 +9,9 @@
         android:id="@+id/btn_checkNotice"
         android:title="공지 확인하기" />
     <item
+        android:id="@+id/btn_invite"
+        android:title="팀원 초대하기"/>
+    <item
         android:id="@+id/btn_exitTeam"
         android:title="팀 나가기"/>
 </menu>

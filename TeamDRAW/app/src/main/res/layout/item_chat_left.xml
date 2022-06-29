@@ -24,7 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
 
-            android:background="@drawable/wanting_profile"
+            android:background="@drawable/man"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

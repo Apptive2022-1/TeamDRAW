@@ -139,9 +139,12 @@ class ChattingFragment : Fragment() {
                             } else {
                             }
                         }
-
-
-
+                }
+                R.id.btn_invite ->{
+                    var bundle = Bundle()
+                    bundle.putString("Invite", "invite")
+                    bundle.putString("teamID",teamID)
+                    findNavController().navigate(R.id.action_chattingFragment_to_chattingListFragment, bundle)
 
                 }
                 R.id.btn_checkNotice -> {

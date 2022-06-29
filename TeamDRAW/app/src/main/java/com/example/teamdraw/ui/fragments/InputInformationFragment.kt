@@ -127,8 +127,7 @@ class InputInformationFragment : Fragment() {
                     4 -> binding.tvPageDescription.text = "성향체크"
                     5 -> binding.tvPageDescription.text = "성향체크"
                     6 -> binding.tvPageDescription.text = "스킬셋, 툴"
-                    7 -> binding.tvPageDescription.text = "스킬셋, 툴"
-                    8->  binding.tvPageDescription.text = "프로필 설정"
+                    7->  binding.tvPageDescription.text = "프로필 설정"
                 }
             }
         })

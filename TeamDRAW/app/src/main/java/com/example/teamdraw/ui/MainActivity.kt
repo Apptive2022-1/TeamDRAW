@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("dest : ", navHostController.graph.startDestDisplayName)
             when (destination.id) {
                 R.id.contestDetailFragment, R.id.inputInformationFragment, R.id.chattingFragment, R.id.writeRecruitingFragment,
-                R.id.oneToOneChatFragment, R.id.userProfileFragment, R.id.checkTeamNoticeFragment, R.id.memberEvaluateFragment -> {
+                R.id.oneToOneChatFragment, R.id.userProfileFragment, R.id.checkTeamNoticeFragment, R.id.memberEvaluateFragment,
+                R.id.wantingTeamFragment-> {
                     supportActionBar?.hide()
                     bottomNavBarHide()
                 }
@@ -185,16 +186,6 @@ class MainActivity : AppCompatActivity() {
                 userInfoViewModel.addList(value, "SKILL_LIST")
             }
         }
-        if(user?.skillH != null){
-            userInfoViewModel.updateValue(user?.skillH.toString(), "SkILL_H")
-        }
-        if(user?.skillL != null){
-            userInfoViewModel.updateValue(user?.skillL.toString(), "SkILL_L")
-        }
-        if(user?.skillM != null){
-            userInfoViewModel.updateValue(user?.skillM.toString(), "SkILL_M")
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

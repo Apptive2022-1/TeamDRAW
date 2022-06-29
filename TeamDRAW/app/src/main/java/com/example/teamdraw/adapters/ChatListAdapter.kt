@@ -43,7 +43,7 @@ class ChatListAdapter() : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolde
             dbRef.get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) { // document 가 존재하는 경우
-                        var chatList = ChatList("","","","")
+                        var chatList = ChatList("","","","", "")
                         val chat = document.toObject<OneToOneChat>()
                         Log.d("chat  ", chat.toString())
                         for(h in chat!!.host){
@@ -51,11 +51,18 @@ class ChatListAdapter() : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolde
                                 val dbRef = db.collection("Users").document(h)
                                 dbRef.get().addOnSuccessListener {  document ->
                                     if(document.exists()){
-                                        chatList.name = document.toObject<User>()!!.nickname!!
+                                        val user = document.toObject<User>()!!
+                                        chatList.name = user.nickname!!
                                         if(chat!!.chatList.isNotEmpty()) {
                                             val lastChat = chat!!.chatList.last()
                                             chatList.message = lastChat.message
                                             chatList.time = lastChat.time
+                                        }
+                                        if(user.positionList!!.size >0){
+                                            chatList.position = user.positionList!![0]
+                                        }
+                                        else{
+                                            chatList.position = "포지션미정"
                                         }
                                         binding.chatList = chatList
                                         binding.clickListener = clickListener

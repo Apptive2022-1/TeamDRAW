@@ -11,9 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamdraw.adapters.ChatAdapter
 import com.example.teamdraw.databinding.FragmentOneToOneChatBinding
-import com.example.teamdraw.models.Chat
-import com.example.teamdraw.models.OneToOneChat
-import com.example.teamdraw.models.TeamChat
+import com.example.teamdraw.models.*
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -30,6 +28,8 @@ class OneToOneChatFragment : Fragment() {
     private lateinit var adapter: ChatAdapter
     private var onetooneChatID: String? = null
     private var onetooneChat = mutableListOf<Chat>()
+    private var invited : String? = null
+    private var teamID : String? = null
 
 
     override fun onCreateView(
@@ -43,6 +43,8 @@ class OneToOneChatFragment : Fragment() {
 
         arguments?.let {
             onetooneChatID = it.getString("onetooneChatID")
+            invited = it.getString("Invite")
+            teamID = it.getString("teamID")
         }
 
         adapter.setList(initChattingList())
@@ -124,6 +126,47 @@ class OneToOneChatFragment : Fragment() {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     onetooneChat = document.toObject<OneToOneChat>()!!.chatList
+                    if(invited != null){
+                        onetooneChat.add(Chat("당신을 우리팀에 초대합니다 !!",
+                            getTime(),
+                            auth.currentUser?.uid.toString(),
+                            userInfoViewModel.nickname.value!!))
+                        val dbRef = db.collection("OneToOneChat").document(onetooneChatID.toString())
+                        dbRef.get()
+                            .addOnSuccessListener { document ->
+                                dbRef.update("chatList", onetooneChat).addOnSuccessListener {
+
+                                    val host = document.toObject<OneToOneChat>()!!.host
+                                    for(h in host){
+                                        if(h != auth.currentUser?.uid.toString()){
+                                            Log.d("h ", h)
+                                            val dbRef = db.collection("Users").document(h)
+                                            dbRef.get()
+                                                .addOnSuccessListener { document ->
+                                                    var teamList = document.toObject<User>()!!.teamList
+                                                    teamList!!.add(teamID.toString())
+                                                    dbRef.update("teamList", teamList).addOnSuccessListener {
+
+                                                        val dbRef = db.collection("Teams").document(teamID.toString())
+                                                        dbRef.get()
+                                                            .addOnSuccessListener { document ->
+                                                                var memberList = document.toObject<Team>()!!.userList
+                                                                memberList!!.add(h)
+                                                                dbRef.update("userList", memberList)
+                                                            }
+                                                    }
+
+                                                }
+
+
+
+
+
+                                        }
+                                    }
+                                }
+                            }
+                    }
                     adapter.setList(onetooneChat)
                     adapter.notifyDataSetChanged()
                     Log.d("data ", document.toObject<TeamChat>()!!.chatList.toString())
