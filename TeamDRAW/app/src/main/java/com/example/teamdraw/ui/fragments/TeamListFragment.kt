@@ -125,13 +125,17 @@ class TeamListFragment : Fragment() {
         val teamFragmentList = arrayListOf<Fragment>()
         val teamList = userInfoViewModel.teamList.value
         Log.d("test", teamList!!.size.toString())
-        if (teamList != null) {
+        if (teamList.size != 0) {
             for (teamId in teamList){
                 teamFragmentList.add(TeamFragment.newInstance(teamId))
             }
-            val vpAdapter = TeamListViewPagerAdapter(teamFragmentList,this)
-            binding.vpTeamList.adapter = vpAdapter
+
         }
+        else {
+            teamFragmentList.add(EmptyTeamListFragment())
+        }
+        val vpAdapter = TeamListViewPagerAdapter(teamFragmentList,this)
+        binding.vpTeamList.adapter = vpAdapter
     }
 
 

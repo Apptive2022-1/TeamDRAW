@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.teamdraw.R
 import com.example.teamdraw.databinding.FragmentUserProfileBinding
+import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.android.material.tabs.TabLayout
 
 class UserProfileFragment : Fragment() {
@@ -21,13 +23,13 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         binding.popUpBtn.setOnClickListener {
             findNavController().popBackStack()
         }
 
         binding.user = args.user
+
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {

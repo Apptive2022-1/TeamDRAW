@@ -56,6 +56,7 @@ class RecruitingDialog(
         binding.tvRecruitingText.text = recruiting.text
         binding.tvRecruitingTime.text = recruiting.time
         binding.tvRecruitingTitle.text = recruiting.title
+        binding.ivProfile
         val db = Firebase.firestore
         val dbRef = db.collection("Users").document(recruiting.userID) // userId로 DB 접근
         dbRef.get()
@@ -63,6 +64,12 @@ class RecruitingDialog(
                 if (document != null) {
                     val userData = document.toObject<User>()
                     binding.userNicknameTv.text = userData!!.nickname
+                    if(userData!!.positionList!!.size > 0){
+                        binding.wantingProfileTv.text = userData!!.positionList!![0]
+                    }
+                    else{
+                        binding.wantingProfileTv.text = "포지션미정"
+                    }
                 } else {
                     Log.d("db get", "No such document")
                 }

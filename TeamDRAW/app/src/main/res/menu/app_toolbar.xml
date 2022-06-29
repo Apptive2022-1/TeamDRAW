@@ -16,9 +16,8 @@
 
     <item
         android:id="@+id/myProfileFragment"
+        android:icon="@drawable/man"
         android:title="내 프로필"
-        android:icon="@drawable/ic_default_profile"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
 
 </menu>
