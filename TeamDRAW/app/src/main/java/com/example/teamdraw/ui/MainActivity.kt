@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("dest : ", navHostController.graph.startDestDisplayName)
             when (destination.id) {
                 R.id.contestDetailFragment, R.id.inputInformationFragment, R.id.chattingFragment, R.id.writeRecruitingFragment,
-                R.id.oneToOneChat, R.id.userProfileFragment -> {
+                R.id.oneToOneChatFragment, R.id.userProfileFragment, R.id.checkTeamNoticeFragment, R.id.memberEvaluateFragment -> {
                     supportActionBar?.hide()
                     bottomNavBarHide()
                 }

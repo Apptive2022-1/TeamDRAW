@@ -18,6 +18,8 @@ class TeamFragment : Fragment() {
     private lateinit var binding: FragmentTeamBinding
     private var teamID: String? = null
     private var teamName: String? = null
+    private var teamNotice: String? = null
+    private var teamLeader : String? = null
 
     companion object {
         fun newInstance(teamID: String) =
@@ -52,6 +54,8 @@ class TeamFragment : Fragment() {
             var bundle = Bundle()
             bundle.putString("teamID",teamID)
             bundle.putString("teamName", teamName)
+            bundle.putString("teamNotice", teamNotice)
+            bundle.putString("teamLeader", teamLeader)
             findNavController().navigate(R.id.action_teamListFragment_to_chattingFragment,bundle)
         }
 
@@ -66,6 +70,9 @@ class TeamFragment : Fragment() {
                     val teamData = document.toObject<Team>()
                     binding.tvTeamName.text = teamData!!.teamName
                     teamName = teamData!!.teamName
+                    teamNotice = teamData!!.teamNotice
+                    Log.d("db get", teamNotice.toString())
+                    teamLeader = teamData!!.teamLeader
                     binding.tvFor.text = teamData!!.forTarget
                     binding.tvTeamNotice.text = teamData.teamNotice
 

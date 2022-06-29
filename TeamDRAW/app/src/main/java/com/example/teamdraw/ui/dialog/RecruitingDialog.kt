@@ -17,7 +17,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.teamdraw.R
 import com.example.teamdraw.databinding.DialogRecruitingBinding
-import com.example.teamdraw.models.*
+import com.example.teamdraw.models.OneToOneChat
+import com.example.teamdraw.models.Recruiting
+import com.example.teamdraw.models.User
 import com.example.teamdraw.viewmodels.UserInfoViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -80,9 +82,7 @@ class RecruitingDialog(
         }
         binding.btnEnterTeam.setOnClickListener {
             val randomId = makeRandomTeamID()
-            Log.d("123", userInfoViewModel.one_to_one_ChatList.value.toString())
             userInfoViewModel.addList(randomId, "ONETOONE")
-            Log.d("123", userInfoViewModel.one_to_one_ChatList.value.toString())
             val userId = auth.currentUser?.uid // userId 가져오기
             val db = Firebase.firestore
             val dbRef = db.collection("Users").document(userId.toString())
@@ -104,33 +104,22 @@ class RecruitingDialog(
                                         db.collection("Users").document(recruiting.userID)
                                             .update("one_to_one_ChatList", newList)
                                             .addOnSuccessListener {
-
-                                                val dbRef =
-                                                    db.collection("OneToOneChat").document(randomId)
-                                                dbRef.get().addOnSuccessListener { document ->
+                                                val dbRef = db.collection("OneToOneChat").document(randomId)
+                                                    dbRef.get().addOnSuccessListener { document ->
                                                     if (document.exists()) {
                                                         Log.d("개인채팅 생성 실패", "실패")
                                                         dismiss()
                                                     } else {
                                                         db.collection("OneToOneChat")
                                                             .document(randomId)
-                                                            .set(
-                                                                OneToOneChat(
-                                                                    randomId,
-                                                                    mutableListOf(
-                                                                        recruiting.userID,
-                                                                        userId.toString()
-                                                                    ),
+                                                            .set(OneToOneChat(randomId,
+                                                                    mutableListOf(recruiting.userID, userId.toString()),
                                                                     mutableListOf()
                                                                 )
                                                             )
                                                             .addOnSuccessListener {
                                                                 findNavController().navigate(R.id.action_findingTeamMembersFragment_to_chattingListFragment)
                                                                 dismiss()
-                                                                Log.d(
-                                                                    "Team Chatting",
-                                                                    "팀채팅 최초 생성 성공"
-                                                                )
                                                             }
                                                     }
                                                 }

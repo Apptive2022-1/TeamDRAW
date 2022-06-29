@@ -101,7 +101,11 @@
         android:id="@+id/myProfileFragment"
         android:name="com.example.teamdraw.ui.fragments.MyProfileFragment"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile" />
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_inputInformationFragment"
+            app:destination="@id/inputInformationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chattingListFragment"
         android:name="com.example.teamdraw.ui.fragments.ChattingListFragment"
@@ -109,7 +113,7 @@
         tools:layout="@layout/fragment_chatting_list" >
         <action
             android:id="@+id/action_chattingListFragment_to_oneToOneChat"
-            app:destination="@id/oneToOneChat" />
+            app:destination="@id/oneToOneChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/teamListFragment"
@@ -124,9 +128,26 @@
         android:id="@+id/chattingFragment"
         android:name="com.example.teamdraw.ui.fragments.ChattingFragment"
         android:label="fragment_chatting"
-        tools:layout="@layout/fragment_chatting" />
+        tools:layout="@layout/fragment_chatting" >
+        <action
+            android:id="@+id/action_chattingFragment_to_checkTeamNoticeFragment"
+            app:destination="@id/checkTeamNoticeFragment" />
+        <action
+            android:id="@+id/action_chattingFragment_to_memberEvaluateFragment"
+            app:destination="@id/memberEvaluateFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/oneToOneChat"
+        android:id="@+id/oneToOneChatFragment"
         android:name="com.example.teamdraw.ui.fragments.OneToOneChatFragment"
         android:label="OneToOneChat" />
+    <fragment
+        android:id="@+id/checkTeamNoticeFragment"
+        android:name="com.example.teamdraw.ui.fragments.CheckTeamNoticeFragment"
+        android:label="fragment_check_team_notice"
+        tools:layout="@layout/fragment_check_team_notice" />
+    <fragment
+        android:id="@+id/memberEvaluateFragment"
+        android:name="com.example.teamdraw.ui.fragments.MemberEvaluateFragment"
+        android:label="fragment_member_evaluate"
+        tools:layout="@layout/fragment_member_evaluate" />
 </navigation>

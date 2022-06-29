@@ -38,7 +38,6 @@ class ChatListAdapter() : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolde
         private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
         fun bind(chat: OneToOneChat, clickListener: ChatListListener) {
-
             val db = Firebase.firestore
             val dbRef = db.collection("OneToOneChat").document(chat.chatId!!)
             dbRef.get()
@@ -46,9 +45,9 @@ class ChatListAdapter() : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolde
                     if (document.exists()) { // document 가 존재하는 경우
                         var chatList = ChatList("","","","")
                         val chat = document.toObject<OneToOneChat>()
+                        Log.d("chat  ", chat.toString())
                         for(h in chat!!.host){
                             if(h != auth.currentUser?.uid.toString()){
-                                Log.d("h ", h)
                                 val dbRef = db.collection("Users").document(h)
                                 dbRef.get().addOnSuccessListener {  document ->
                                     if(document.exists()){

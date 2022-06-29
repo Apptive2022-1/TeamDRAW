@@ -60,8 +60,8 @@ class TeamListFragment : Fragment() {
                         makeRandomTeamID(),
                         mutableListOf(auth.currentUser?.uid.toString()),
                         etv_input_teamName.text.toString(),
-                        null,
-                        etv_input_For.text.toString()
+                        "",
+                        etv_input_For.text.toString(),auth.currentUser?.uid.toString()
                     )
                     updateTeamInfoToDB(team, makeTeamdialog)
                 } else {
@@ -92,14 +92,14 @@ class TeamListFragment : Fragment() {
                         .addOnSuccessListener {
                             Log.d("CreateTeam ", "팀 생성 success")
                         }
-                    updateUserData(team)
+                    updateTeamData(team)
                     makeTeamDialog.dismiss()
                     initTeamListViewPager()
                 }
             }
     }
 
-    private fun updateUserData(team: Team) {
+    private fun updateTeamData(team: Team) {
         userInfoViewModel.addList(team.teamID, "TEAMLIST")
         val userId = auth.currentUser?.uid // userId 가져오기
         val db = Firebase.firestore
