@@ -19,6 +19,12 @@ class UserInfoViewModel : ViewModel() {
     private val _positionDetailList = MutableLiveData<MutableList<String>>()
     private val _selfIntroduce = MutableLiveData<String>()
     private val _personalLink = MutableLiveData<String>()
+    private val _questionList = MutableLiveData<MutableList<String>>()
+    private val _skillList = MutableLiveData<MutableList<String>>()
+    private val _skillH = MutableLiveData<String>()
+    private val _skillM = MutableLiveData<String>()
+    private val _skillL = MutableLiveData<String>()
+
 
 
     val name: MutableLiveData<String>
@@ -53,6 +59,7 @@ class UserInfoViewModel : ViewModel() {
 
     val positionList: MutableLiveData<MutableList<String>>
         get() = _positionList
+
     val positionDetailList: MutableLiveData<MutableList<String>>
         get() = _positionDetailList
 
@@ -62,12 +69,28 @@ class UserInfoViewModel : ViewModel() {
     val personalLink: MutableLiveData<String>
         get() = _personalLink
 
+    val questionList: MutableLiveData<MutableList<String>>
+        get() = _questionList
+
+    val skillList: MutableLiveData<MutableList<String>>
+        get() = _skillList
+
+    val skillH: MutableLiveData<String>
+        get() = _skillH
+
+    val skillM: MutableLiveData<String>
+        get() = _skillM
+
+    val skillL: MutableLiveData<String>
+        get() = _skillL
+
 
     init {
         _emailAuthenticated.value = "false"
         _departureList.value = mutableListOf()
         _positionList.value = mutableListOf()
         _positionDetailList.value = mutableListOf()
+        _questionList.value = mutableListOf()
     }
 
     fun updateValue(value: String, member: String) {
@@ -105,6 +128,15 @@ class UserInfoViewModel : ViewModel() {
             "PERSONALLINK"->{
                 _personalLink.value = value
             }
+            "skillH"->{
+                _skillH.value = value
+            }
+            "skillM"->{
+                _skillM.value = value
+            }
+            "skillL"->{
+                _skillL.value = value
+            }
         }
     }
     fun addList(value:String, member : String){
@@ -118,7 +150,12 @@ class UserInfoViewModel : ViewModel() {
             "POSITION_DETAIL" ->{
                 _positionDetailList.value?.add(value)
             }
-
+            "QUESTION" ->{
+                _questionList.value?.add(value)
+            }
+            "SKILL" ->{
+                _skillList.value?.add(value)
+            }
         }
     }
     fun removeList(value:String, member : String){
@@ -132,6 +169,13 @@ class UserInfoViewModel : ViewModel() {
             "POSITION_DETAIL" ->{
                 _positionDetailList.value?.remove(value)
             }
+            "QUESTION" ->{
+                _questionList.value?.remove(value)
+            }
+            "SKILL" ->{
+                _skillList.value?.remove(value)
+            }
+
         }
     }
 

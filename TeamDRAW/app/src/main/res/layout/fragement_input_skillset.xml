@@ -1,6 +1,556 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="user"
+            type="com.example.teamdraw.viewmodels.UserInfoViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="여러분의 능력 자유롭게 알려주세요!"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="MS office"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_skillMS"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <Button
+                android:id="@+id/skillMS1"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:textSize="10sp"
+                android:text="워드"
+                app:layout_constraintBottom_toTopOf="@+id/skillMS5"
+                app:layout_constraintEnd_toStartOf="@+id/skillMS2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/skillMS2"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="엑셀"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillMS3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillMS1"
+                app:layout_constraintTop_toTopOf="@+id/skillMS1" />
+
+            <Button
+                android:id="@+id/skillMS3"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="파워포인트"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillMS4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillMS2"
+                app:layout_constraintTop_toTopOf="@+id/skillMS2" />
+
+            <Button
+                android:id="@+id/skillMS4"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="아웃룩"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillMS3"
+                app:layout_constraintTop_toTopOf="@+id/skillMS3" />
+
+            <Button
+                android:id="@+id/skillMS5"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="원노트"
+                android:textSize="10sp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/skillMS6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skillMS1" />
+
+            <Button
+                android:id="@+id/skillMS6"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="퍼블리셔"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillMS7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillMS5"
+                app:layout_constraintTop_toTopOf="@+id/skillMS5" />
+
+            <Button
+                android:id="@+id/skillMS7"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="액세스"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/skillMS6"
+                app:layout_constraintTop_toTopOf="@id/skillMS6"
+                app:layout_constraintEnd_toStartOf="@id/skillMS4"
+                app:layout_constraintHorizontal_bias="0.5"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="프로그램 언어"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout_skillMS"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_skillMS" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_skillL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+            <Button
+                android:id="@+id/skillL1"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:textSize="10sp"
+                android:text="python"
+                app:layout_constraintBottom_toTopOf="@+id/skillL5"
+                app:layout_constraintEnd_toStartOf="@+id/skillL2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/skillL2"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="C"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillL3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL1"
+                app:layout_constraintTop_toTopOf="@+id/skillL1" />
+
+            <Button
+                android:id="@+id/skillL3"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="Java"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillL4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL2"
+                app:layout_constraintTop_toTopOf="@+id/skillL2" />
+
+            <Button
+                android:id="@+id/skillL4"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="C++"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL3"
+                app:layout_constraintTop_toTopOf="@+id/skillL3" />
+
+            <Button
+                android:id="@+id/skillL5"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="C#"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/skillL9"
+                app:layout_constraintEnd_toStartOf="@+id/skillL6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skillL1" />
+
+            <Button
+                android:id="@+id/skillL6"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="JAVA Script"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillL7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL5"
+                app:layout_constraintTop_toTopOf="@+id/skillL5" />
+
+            <Button
+                android:id="@+id/skillL7"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="Swift"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillL8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL6"
+                app:layout_constraintTop_toTopOf="@+id/skillL6" />
+
+            <Button
+                android:id="@+id/skillL8"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="Perl"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL7"
+                app:layout_constraintTop_toTopOf="@+id/skillL7" />
+
+            <Button
+                android:id="@+id/skillL9"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="R"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/skillL10"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skillL5" />
+
+            <Button
+                android:id="@+id/skillL10"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="KOTLIN"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillL11"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL9"
+                app:layout_constraintTop_toTopOf="@+id/skillL9" />
+
+            <Button
+                android:id="@+id/skillL11"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="Ruby"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillL12"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL10"
+                app:layout_constraintTop_toTopOf="@+id/skillL10" />
+
+            <Button
+                android:id="@+id/skillL12"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="Go"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillL11"
+                app:layout_constraintTop_toTopOf="@+id/skillL11" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="디자인"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout_skillL"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_skillL" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_skillD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <Button
+                android:id="@+id/skillD1"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:textSize="10sp"
+                android:text="스케치"
+                app:layout_constraintBottom_toTopOf="@+id/skillD5"
+                app:layout_constraintEnd_toStartOf="@+id/skillD2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/skillD2"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="XD"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillD3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD1"
+                app:layout_constraintTop_toTopOf="@+id/skillD1" />
+
+            <Button
+                android:id="@+id/skillD3"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="피그마"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillD4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD2"
+                app:layout_constraintTop_toTopOf="@+id/skillD2" />
+
+            <Button
+                android:id="@+id/skillD4"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="포토샵"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD3"
+                app:layout_constraintTop_toTopOf="@+id/skillD3" />
+
+            <Button
+                android:id="@+id/skillD5"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="일러스트레이터"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/skillD9"
+                app:layout_constraintEnd_toStartOf="@+id/skillD6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skillD1" />
+
+            <Button
+                android:id="@+id/skillD6"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="제플린"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillD7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD5"
+                app:layout_constraintTop_toTopOf="@+id/skillD5" />
+
+            <Button
+                android:id="@+id/skillD7"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="프레이머"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillD8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD6"
+                app:layout_constraintTop_toTopOf="@+id/skillD6" />
+
+            <Button
+                android:id="@+id/skillD8"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="프로토파이"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD7"
+                app:layout_constraintTop_toTopOf="@+id/skillD7" />
+
+            <Button
+                android:id="@+id/skillD9"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="애프터이펙트"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/skillD10"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skillD5" />
+
+            <Button
+                android:id="@+id/skillD10"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="시네마4D"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillD11"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD9"
+                app:layout_constraintTop_toTopOf="@+id/skillD9" />
+
+            <Button
+                android:id="@+id/skillD11"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="브렌더"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillD8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillD10"
+                app:layout_constraintTop_toTopOf="@+id/skillD10" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="생산성"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout_skillD"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_skillD" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_skillP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+            <Button
+                android:id="@+id/skillP1"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:textSize="10sp"
+                android:text="노션"
+                app:layout_constraintBottom_toTopOf="@+id/skillP5"
+                app:layout_constraintEnd_toStartOf="@+id/skillP2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/skillP2"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="잔디"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillP3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillP1"
+                app:layout_constraintTop_toTopOf="@+id/skillP1" />
+
+            <Button
+                android:id="@+id/skillP3"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="지라"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/skillP4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillP2"
+                app:layout_constraintTop_toTopOf="@+id/skillP2" />
+
+            <Button
+                android:id="@+id/skillP4"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="워크스페이스"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/skillP3"
+                app:layout_constraintTop_toTopOf="@+id/skillP3" />
+
+            <Button
+                android:id="@+id/skillP5"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/frame_btn_notselected2"
+                android:text="에버노트"
+                android:textSize="10sp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/skillP2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skillP1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

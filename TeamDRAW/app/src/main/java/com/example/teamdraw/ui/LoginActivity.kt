@@ -187,5 +187,24 @@ class LoginActivity : AppCompatActivity() {
         if(user?.personalLink != null){
             userInfoViewModel.updateValue(user?.personalLink.toString(), "PERSONALLINK")
         }
+        if(user?.questionList != null){
+            for(value in user?.questionList) {
+                userInfoViewModel.addList(value, "QUESTION")
+            }
+        }
+        if(user?.skillList != null){
+            for(value in user?.skillList) {
+                userInfoViewModel.addList(value, "SKILL")
+            }
+        }
+        if(user?.skillH != null){
+            userInfoViewModel.updateValue(user?.skillH.toString(), "SKILLH")
+        }
+        if(user?.skillM != null){
+            userInfoViewModel.updateValue(user?.skillM.toString(), "SKILLM")
+        }
+        if(user?.skillL != null){
+            userInfoViewModel.updateValue(user?.skillL.toString(), "SKILLL")
+        }
     }
 }

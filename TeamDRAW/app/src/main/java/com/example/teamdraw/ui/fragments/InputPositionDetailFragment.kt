@@ -18,7 +18,11 @@ class InputPositionDetailFragment : Fragment(), View.OnClickListener {
     private val userInfoViewModel: UserInfoViewModel by activityViewModels()
     private lateinit var binding: FragmentInputPositionDetailBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentInputPositionDetailBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         binding.user = userInfoViewModel
@@ -40,35 +44,34 @@ class InputPositionDetailFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(btn: View?) {
         val button = view?.findViewById<Button>(btn!!.id)
-        if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())){ // 해당 분야를 선택 해제
+        if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())) { // 해당 분야를 선택 해제
             btn!!.setBackgroundResource(R.drawable.frame_btn_notselected2)
-            userInfoViewModel.removeList(button!!.text.toString(),"POSITION_DETAIL")
-        }
-        else { // 해당 분야를 선택
+            userInfoViewModel.removeList(button!!.text.toString(), "POSITION_DETAIL")
+        } else { // 해당 분야를 선택
             btn!!.setBackgroundResource(R.drawable.frame_btn_selected2)
-            userInfoViewModel.addList(button!!.text.toString(),"POSITION_DETAIL")
+            userInfoViewModel.addList(button!!.text.toString(), "POSITION_DETAIL")
         }
     }
 
-    private fun showDetail(){
+    private fun showDetail() {
         val positionList = userInfoViewModel.positionList.value
         binding.constraintLayoutDeveloper.visibility = View.GONE
         binding.constraintLayoutDesigner.visibility = View.GONE
         binding.constraintLayoutProductManager.visibility = View.GONE
-        if(positionList!!.isEmpty()){
+        if (positionList!!.isEmpty()) {
             binding.constraintLayoutNonePosition.visibility = View.VISIBLE
             return
         }
         binding.constraintLayoutNonePosition.visibility = View.GONE
-        for(position in positionList!!) {
-            when(position){
-                "개발자" ->{
+        for (position in positionList!!) {
+            when (position) {
+                "개발자" -> {
                     binding.constraintLayoutDeveloper.visibility = View.VISIBLE
                 }
-                "디자이너" ->{
+                "디자이너" -> {
                     binding.constraintLayoutDesigner.visibility = View.VISIBLE
                 }
-                "기획자" ->{
+                "기획자" -> {
                     binding.constraintLayoutProductManager.visibility = View.VISIBLE
                 }
             }
@@ -80,38 +83,35 @@ class InputPositionDetailFragment : Fragment(), View.OnClickListener {
         val btnDesigner = binding.constraintLayoutDesigner.children
         val btnDeveloper = binding.constraintLayoutDeveloper.children
 
-        btnProductManager.forEach { btn->
-            if(btn is Button){
+        btnProductManager.forEach { btn ->
+            if (btn is Button) {
                 btn.setOnClickListener(this) // onClick 오버라이딩한거 적용
                 val button = view?.findViewById<Button>(btn!!.id)
-                if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())){ // 해당 포지션 선택됨
+                if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())) { // 해당 포지션 선택됨
                     btn.setBackgroundResource(R.drawable.frame_btn_selected2)
-                }
-                else { // 선택되어있지 않음
+                } else { // 선택되어있지 않음
                     btn.setBackgroundResource(R.drawable.frame_btn_notselected2)
                 }
             }
         }
         btnDesigner.forEach { btn ->
-            if(btn is Button){
+            if (btn is Button) {
                 btn.setOnClickListener(this)
                 val button = view?.findViewById<Button>(btn!!.id)
-                if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())){ // 해당 포지션 선택됨
+                if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())) { // 해당 포지션 선택됨
                     btn.setBackgroundResource(R.drawable.frame_btn_selected2)
-                }
-                else { // 선택되어있지 않음
+                } else { // 선택되어있지 않음
                     btn.setBackgroundResource(R.drawable.frame_btn_notselected2)
                 }
             }
         }
         btnDeveloper.forEach { btn ->
-            if(btn is Button){
+            if (btn is Button) {
                 btn.setOnClickListener(this)
                 val button = view?.findViewById<Button>(btn!!.id)
-                if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())){ // 해당 포지션 선택됨
+                if (userInfoViewModel.positionDetailList.value!!.contains(button!!.text.toString())) { // 해당 포지션 선택됨
                     btn.setBackgroundResource(R.drawable.frame_btn_selected2)
-                }
-                else { // 선택되어있지 않음
+                } else { // 선택되어있지 않음
                     btn.setBackgroundResource(R.drawable.frame_btn_notselected2)
                 }
             }
