@@ -25,7 +25,7 @@
                 android:layout_height="145dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="Contest Image"
-                android:src="@drawable/placeholder_contest_image" />
+                bindingImage="@{contest}" />
 
             <TextView
                 android:layout_width="wrap_content"

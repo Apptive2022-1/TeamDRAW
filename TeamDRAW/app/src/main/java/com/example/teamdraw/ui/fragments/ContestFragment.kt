@@ -63,8 +63,9 @@ class ContestFragment : Fragment() {
             object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when (tab?.text) {
-                        "프로젝트" -> binding.contestRv.visibility = View.INVISIBLE
-                        else -> binding.contestRv.visibility = View.VISIBLE
+                        "프로젝트" -> viewModel.clickProject()
+                        "공모전" -> viewModel.clickContest()
+                        else -> viewModel.clickAll()
                     }
                 }
 

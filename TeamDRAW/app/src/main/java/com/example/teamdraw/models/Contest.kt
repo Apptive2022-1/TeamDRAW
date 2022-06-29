@@ -12,4 +12,5 @@ data class Contest(
     val organization :List<String>,
     val reward : String,
     val detail : String,
+    val type : Int = 0
 ):Parcelable

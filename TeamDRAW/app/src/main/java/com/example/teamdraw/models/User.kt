@@ -23,5 +23,10 @@ data class User(
     val selfIntroduce:String? = null,
     val personalLink:String? = null,
     val teamList : @RawValue MutableList<String>? = null,
-    val one_to_one_ChatList : @RawValue MutableList<String>? = null
+    val one_to_one_ChatList : @RawValue MutableList<String>? = null,
+    val questionList: MutableList<String>?  = null,
+    val skillList: MutableList<String>? = null,
+    val skillH: String? = null,
+    val skillM: String? = null,
+    val skillL: String? = null,
 ): Parcelable
