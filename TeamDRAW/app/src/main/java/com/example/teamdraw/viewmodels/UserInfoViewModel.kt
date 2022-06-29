@@ -21,6 +21,12 @@ class UserInfoViewModel : ViewModel() {
     private val _personalLink = MutableLiveData<String>()
     private val _teamList = MutableLiveData<MutableList<String>>()
     private val _one_to_one_ChatList = MutableLiveData<MutableList<String>>()
+    private val _questionList = MutableLiveData<MutableList<String>>()
+    private val _skillList = MutableLiveData<MutableList<String>>()
+    private val _skillH = MutableLiveData<String>()
+    private val _skillM = MutableLiveData<String>()
+    private val _skillL = MutableLiveData<String>()
+
 
 
     val name: MutableLiveData<String>
@@ -69,6 +75,22 @@ class UserInfoViewModel : ViewModel() {
 
     val one_to_one_ChatList: MutableLiveData<MutableList<String>>
         get() = _one_to_one_ChatList
+
+    val questionList: MutableLiveData<MutableList<String>>
+        get() = _questionList
+
+    val skillList: MutableLiveData<MutableList<String>>
+        get() = _skillList
+
+    val skillH: MutableLiveData<String>
+        get() = _skillH
+
+    val skillM: MutableLiveData<String>
+        get() = _skillM
+
+    val skillL: MutableLiveData<String>
+        get() = _skillL
+
 
     init {
         _emailAuthenticated.value = "false"
